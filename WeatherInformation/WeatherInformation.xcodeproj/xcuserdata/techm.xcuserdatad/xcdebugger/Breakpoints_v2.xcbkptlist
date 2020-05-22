@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "94F75CD0-6164-43F8-88DA-2CAB6FFFE32B"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CE26CD7B-85D0-4AD6-B410-6FDCCC0D1A61"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherInformation/NetworkDiagram/ApiClient.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "getAllCityTemperatureList(completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "CE26CD7B-85D0-4AD6-B410-6FDCCC0D1A61 - 6664be19ac30ac27"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;WeatherInformation.CityWether, Swift.Error&gt;) -&gt; () in WeatherInformation.ApiClient.getAllCityTemperatureList(completion: (Swift.Result&lt;WeatherInformation.CityWether, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "WeatherInformation"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/techm/OptusAssignment/WeatherInformation/WeatherInformation/NetworkDiagram/ApiClient.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "168">
+               </Location>
+               <Location
+                  uuid = "CE26CD7B-85D0-4AD6-B410-6FDCCC0D1A61 - 6664be19ac30ac27"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;WeatherInformation.CityWether, Swift.Error&gt;) -&gt; () in WeatherInformation.ApiClient.getAllCityTemperatureList(completion: (Swift.Result&lt;WeatherInformation.CityWether, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "WeatherInformation"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/techm/OptusAssignment/WeatherInformation/WeatherInformation/NetworkDiagram/ApiClient.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "203">
+               </Location>
+               <Location
+                  uuid = "CE26CD7B-85D0-4AD6-B410-6FDCCC0D1A61 - 6664be19ac30ac27"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;WeatherInformation.CityWether, Swift.Error&gt;) -&gt; () in WeatherInformation.ApiClient.getAllCityTemperatureList(completion: (Swift.Result&lt;WeatherInformation.CityWether, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "WeatherInformation"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/techm/OptusAssignment/WeatherInformation/WeatherInformation/NetworkDiagram/ApiClient.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "2666">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3068E048-9944-4CFB-925E-D60547EF8EA0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherInformation/NetworkDiagram/ApiClient.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "getAllCityTemperatureList(completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3068E048-9944-4CFB-925E-D60547EF8EA0 - 6664be19ac30ac27"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;WeatherInformation.CityWether, Swift.Error&gt;) -&gt; () in WeatherInformation.ApiClient.getAllCityTemperatureList(completion: (Swift.Result&lt;WeatherInformation.CityWether, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "WeatherInformation"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/techm/OptusAssignment/WeatherInformation/WeatherInformation/NetworkDiagram/ApiClient.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "168">
+               </Location>
+               <Location
+                  uuid = "3068E048-9944-4CFB-925E-D60547EF8EA0 - 6664be19ac30ac27"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;WeatherInformation.CityWether, Swift.Error&gt;) -&gt; () in WeatherInformation.ApiClient.getAllCityTemperatureList(completion: (Swift.Result&lt;WeatherInformation.CityWether, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "WeatherInformation"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/techm/OptusAssignment/WeatherInformation/WeatherInformation/NetworkDiagram/ApiClient.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "203">
+               </Location>
+               <Location
+                  uuid = "3068E048-9944-4CFB-925E-D60547EF8EA0 - 6664be19ac30ac27"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;WeatherInformation.CityWether, Swift.Error&gt;) -&gt; () in WeatherInformation.ApiClient.getAllCityTemperatureList(completion: (Swift.Result&lt;WeatherInformation.CityWether, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "WeatherInformation"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/techm/OptusAssignment/WeatherInformation/WeatherInformation/NetworkDiagram/ApiClient.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "2666">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ED253473-62E7-4BC6-8931-DDC81B5DDE1E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherInformation/NetworkDiagram/ApiClient.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "getAllCityTemperatureList(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B70A3FAD-216A-4E88-8846-DA871E2F1E68"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherInformation/NetworkDiagram/ApiClient.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "performRequestForGETAPI(requestUrl:resultType:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F1C800D9-EBBC-4699-8658-5BBDBFAE455B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherInformation/NetworkDiagram/ApiClient.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "performRequestForGETAPI(requestUrl:resultType:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "58E575A8-62C8-4CCE-830D-34A3B91F0DBD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherInformation/NetworkDiagram/ApiClient.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "performRequestForGETAPI(requestUrl:resultType:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "081CF443-80C8-4558-A083-57ED39A63B46"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherInformation/NetworkDiagram/ApiClient.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "performRequestForGETAPI(requestUrl:resultType:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "95712FD5-589A-4189-888B-2898F6D7AF69"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherInformation/NetworkDiagram/ApiClient.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "performRequestForGETAPI(requestUrl:resultType:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
