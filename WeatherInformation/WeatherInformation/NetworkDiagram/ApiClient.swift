@@ -23,6 +23,18 @@ class ApiClient {
          }
      }
   
+  func getAllCityDetailWeather(cityId: Int ,completion: @escaping (Result<CityWether, Error>) -> Void) {
+    let urlString = WeatherApi.weatherForPerticularCity(id: 2154855)
+      performRequestForGETAPI(requestUrl: URL(string: urlString)!,resultType: CityWether.self) { result in
+          switch(result) {
+          case .success(let result):
+              completion(.success(result))
+          case .failure(let error):
+              completion(.failure(error))
+          }
+      }
+  }
+  
   //MARK: - Private methods for GET API
   private func performRequestForGETAPI<T: Decodable>(requestUrl: URL, resultType: T.Type , completion: @escaping (Result<T, Error>) -> Void) {
       URLSession.shared.dataTask(with: requestUrl) { (data, response, error) in

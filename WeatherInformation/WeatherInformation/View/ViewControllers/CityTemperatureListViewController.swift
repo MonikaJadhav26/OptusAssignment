@@ -24,7 +24,7 @@ class CityTemperatureListViewController: UIViewController {
     
   //MARK: - Method for UI setup
   func setUpUI() {
-    
+    self.navigationController?.isNavigationBarHidden = true
     self.cityTemperatureTable.register(UINib.init(nibName: Constants.cityTempCellIdentifier, bundle: nil), forCellReuseIdentifier: Constants.cityTempCellIdentifier)
   }
   
@@ -40,8 +40,6 @@ class CityTemperatureListViewController: UIViewController {
       }
     }
   }
-
-  
   
 }
 
@@ -56,10 +54,17 @@ extension CityTemperatureListViewController : UITableViewDelegate , UITableViewD
     let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cityTempCellIdentifier, for: indexPath) as! CityTemperatureTableViewCell
     cell.accessibilityIdentifier = "cityCell_\(indexPath.row)"
     cell.cityNameLabel.text = cityTempViewModel.getCityName(indexPath : indexPath)
-    cell.cityTempLabel.text = "29"
+    cell.cityTempLabel.text = cityTempViewModel.getCityTemperature(indexPath : indexPath)
     
     
     return cell
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
+    let cityDetailViewController = UIStoryboard.init(name: Constants.storyboard, bundle: Bundle.main).instantiateViewController(withIdentifier: "CityDetailViewController") as? CityDetailViewController
+    cityDetailViewController?.cityID = cityTempViewModel.getCityId(indexPath : indexPath)
+    self.navigationController?.pushViewController(cityDetailViewController!, animated: true)
   }
   
   func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -85,7 +90,15 @@ extension CityTemperatureListViewController : UITableViewDelegate , UITableViewD
 }
 
 extension CityTemperatureListViewController : CityTempFooterViewDelegate {
+ 
+  func degreeCelciusButtonTapped() {
+    
+  }
   
+  func degreeFareniteButtonTapped() {
+    
+  }
+    
   func addButtonTapped() {
     let cityListViewController = UIStoryboard.init(name: Constants.storyboard, bundle: Bundle.main).instantiateViewController(withIdentifier: "CityListViewController") as? CityListViewController
     self.present(cityListViewController!, animated: true, completion: nil)

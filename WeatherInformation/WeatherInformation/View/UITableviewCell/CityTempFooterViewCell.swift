@@ -10,6 +10,8 @@ import UIKit
 
 protocol CityTempFooterViewDelegate {
     func addButtonTapped()
+    func degreeCelciusButtonTapped()
+    func degreeFareniteButtonTapped()
 }
 
 class CityTempFooterViewCell: UITableViewCell {
@@ -26,5 +28,11 @@ class CityTempFooterViewCell: UITableViewCell {
     
   @IBAction func addButtonClickedAction(_ sender: Any) {
           self.delegate?.addButtonTapped()
+  }
+  @IBAction func degreeCelciusButtonClickedAction(_ sender: Any) {
+          self.delegate?.degreeCelciusButtonTapped()
+  }
+  @IBAction func degreeFareniteClickedAction(_ sender: Any) {
+          self.delegate?.degreeFareniteButtonTapped()
   }
 }

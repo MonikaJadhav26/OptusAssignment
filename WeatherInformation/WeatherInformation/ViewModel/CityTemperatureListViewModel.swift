@@ -18,7 +18,6 @@ class CityTemperatureListViewModel : NSObject {
   var cityTempList = Array<City>()
 
   
-  //
   //MARK: - Method for fetching all city temperature data
   func fetchCityTemperatureData(completion: @escaping (Result<Bool, Error>) -> Void) {
     apiClient.getAllCityTemperatureList { (result) in
@@ -89,8 +88,14 @@ class CityTemperatureListViewModel : NSObject {
     return self.cityTempList[indexPath.row].name ?? ""
   }
   
-  //  func getCityTemperature(indexPath: IndexPath) -> String {
-  //    return self.cityTempList[indexPath.row].main?.temp
-  //  }
+  func getCityId(indexPath: IndexPath) -> Int {
+    return Int(self.cityTempList[indexPath.row].id)
+    
+  }
+  
+    func getCityTemperature(indexPath: IndexPath) -> String {
+      return Formatters.Temp.string(from: Float(self.cityTempList[indexPath.row].temperature))
+
+    }
   
 }
