@@ -35,7 +35,7 @@ class CityDetailViewController: BaseViewController {
 
     }
     
-  @objc func retryPressed() {
+  @objc override func retryPressed() {
     getCityWeatherDetails()
   }
   

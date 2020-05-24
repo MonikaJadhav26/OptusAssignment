@@ -21,10 +21,9 @@ class CityTemperatureListViewModel : NSObject {
   //MARK: - Method for fetching all city temperature data
   func fetchCityTemperatureData(completion: @escaping (Result<Bool, Error>) -> Void) {
     
-    if fetchAllCityTemperatureRecordsFromDB() {
+    if checkInitialCitiesAreLoaded() {
       completion(.success(true))
     }else {
-        
         apiClient.getInitialCitiesTemperatureList { (result) in
           DispatchQueue.main.async {
             switch(result) {
@@ -39,6 +38,20 @@ class CityTemperatureListViewModel : NSObject {
     }
   }
   
+//  //MARK: - Method for fetching city temperature data
+//  func fetchCityDetailWeatherForPerticularCity(cityId : Int,completion: @escaping (Result<Bool, Error>) -> Void) {
+//    apiClient.getAllCityDetailWeather(cityId : cityId) { (result) in
+//      DispatchQueue.main.async {
+//        switch(result) {
+//        case .success(let result):
+//          self.storeCityTemperatureInformationInDatabase(result: [result])
+//          completion(.success(true))
+//        case .failure(let error):
+//          completion(.failure(error))
+//        }
+//      }
+//    }
+//  }
   
   func storeCityTemperatureInformationInDatabase(result : [List])  {
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
@@ -62,10 +75,38 @@ class CityTemperatureListViewModel : NSObject {
       print(saveError)
     }
   }
+    fetchAllCityTemperatureRecordsFromDB()
   }
   
-  func fetchAllCityTemperatureRecordsFromDB() -> Bool {
-    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return false}
+  func checkInitialCitiesAreLoaded() -> Bool {
+      guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return false}
+      
+      // Initialize Fetch Request
+      let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
+      
+      // Create Entity Description
+      let entityDescription = NSEntityDescription.entity(forEntityName: "InitialCities", in: appDelegate.managedObjectContext)
+      
+      // Configure Fetch Request
+      fetchRequest.entity = entityDescription
+      
+      do {
+        let result = try appDelegate.managedObjectContext.fetch(fetchRequest)
+        if (result.count > 0) {
+          return true
+        }
+        
+      } catch {
+        let fetchError = error as NSError
+        print(fetchError)
+      }
+      
+      return false
+    }
+  
+  
+  func fetchAllCityTemperatureRecordsFromDB() {
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
     
     // Initialize Fetch Request
     let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
@@ -82,7 +123,6 @@ class CityTemperatureListViewModel : NSObject {
         for city in result {
           cityTempList.append((city as! NSManagedObject) as! City)
         }
-        return true
       }
       
     } catch {
@@ -90,7 +130,6 @@ class CityTemperatureListViewModel : NSObject {
       print(fetchError)
     }
     
-    return false
   }
   
   func getNumberOfTotalCities(section: Int) -> Int {

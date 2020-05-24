@@ -21,18 +21,20 @@ class CityListViewController: BaseViewController {
    //MARK: - View Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-         getAllCitiesList()
+    //  self.setUpLodingAndErrorView()
+      getAllCitiesList()
+
     }
 
   func getAllCitiesList() {
-    loadingView.isHidden = false
+   // loadingView.isHidden = false
     cityAddViewModel.getAllCityDataFromLocalFile{ result in
       switch(result) {
       case .success:
-        self.loadingView.isHidden = true
+      //  self.loadingView.isHidden = true
         self.cityListTable.reloadData()
       case .failure(let error):
-        self.loadingView.isHidden = true
+       // self.loadingView.isHidden = true
         self.showAlert(message: error.localizedDescription, title: Constants.errorTitle, action: UIAlertAction(title: Constants.ok, style: .default, handler: nil))
       }
     }
@@ -57,12 +59,13 @@ extension CityListViewController : UITableViewDelegate , UITableViewDataSource {
     return cell!
   }
   
-  func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-    return true
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
+    self.dismiss(animated: true, completion: nil)
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 40
+    return 50
   }
   
 }

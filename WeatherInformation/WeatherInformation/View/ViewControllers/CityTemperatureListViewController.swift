@@ -26,6 +26,7 @@ class CityTemperatureListViewController: BaseViewController {
   func setUpUI() {
     self.navigationController?.isNavigationBarHidden = true
     self.cityTemperatureTable.register(UINib.init(nibName: Constants.cityTempCellIdentifier, bundle: nil), forCellReuseIdentifier: Constants.cityTempCellIdentifier)
+    self.setUpLodingAndErrorView()
   }
   
   //MARK: - Call to get all data server
@@ -57,7 +58,6 @@ extension CityTemperatureListViewController : UITableViewDelegate , UITableViewD
     cell.accessibilityIdentifier = "cityCell_\(indexPath.row)"
     cell.cityNameLabel.text = cityTempViewModel.getCityName(indexPath : indexPath)
     cell.cityTempLabel.text = cityTempViewModel.getCityTemperature(indexPath : indexPath)
-    
     
     return cell
   }

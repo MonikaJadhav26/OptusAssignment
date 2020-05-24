@@ -25,8 +25,11 @@ class BaseViewController: UIViewController {
   func setUpLodingAndErrorView() {
          let aux = attachAuxilliaryViews()
          loadingView = aux.loading
-//         errorView = aux.error
-//         errorView.addRetryHandler(self, action: #selector(retryPressed))
+         errorView = aux.error
+         errorView.addRetryHandler(self, action: #selector(retryPressed))
+  }
+  
+  @objc func retryPressed() {
   }
   
   //MARK: - Add tap Gesture to View

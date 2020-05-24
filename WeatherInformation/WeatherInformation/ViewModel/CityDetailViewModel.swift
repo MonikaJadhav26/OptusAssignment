@@ -14,7 +14,7 @@ class CityDetailViewModel : NSObject {
   var apiClient: ApiClient = ApiClient()
   var city : [CityWether] = [CityWether]()
   
-  //MARK: - Method for fetching all city temperature data
+  //MARK: - Method for fetching city temperature data
   func fetchCityDetailWeatherInformation(cityId : Int,completion: @escaping (Result<CityWether, Error>) -> Void) {
     apiClient.getAllCityDetailWeather(cityId : cityId) { (result) in
       DispatchQueue.main.async {

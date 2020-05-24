@@ -60,8 +60,12 @@ class CityAddViewModel : NSObject {
       return self.cityInformation.count
   }
   
+  func getCityId(indexPath: IndexPath) -> Int {
+    return self.cityInformation[indexPath.row].id ?? 0
+  }
+  
   func getCityName(indexPath: IndexPath) -> String {
-      return self.cityInformation[indexPath.row].name ?? ""
+      return "\(self.cityInformation[indexPath.row].name ?? ""), \(self.cityInformation[indexPath.row].country ?? "")"
   }
   
 }

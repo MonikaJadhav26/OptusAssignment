@@ -5,7 +5,11 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="temperature" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
+    <entity name="InitialCities" representedClassName="InitialCities" syncable="YES">
+        <attribute name="isLoaded" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+    </entity>
     <elements>
         <element name="City" positionX="-63" positionY="-18" width="128" height="88"/>
+        <element name="InitialCities" positionX="-63" positionY="9" width="128" height="58"/>
     </elements>
 </model>
