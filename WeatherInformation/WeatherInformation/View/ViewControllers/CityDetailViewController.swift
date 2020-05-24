@@ -30,21 +30,25 @@ class CityDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
       self.cityDetailTable.register(UINib.init(nibName: Constants.temperatureDetailsCellIdentifier, bundle: nil), forCellReuseIdentifier: Constants.temperatureDetailsCellIdentifier)
+     setUpLodingAndErrorView()
       getCityWeatherDetails()
-      print(cityDetailTable.contentOffset.y)
 
     }
     
+  @objc func retryPressed() {
+    getCityWeatherDetails()
+  }
+  
   //MARK: - Call to get all data server
   func getCityWeatherDetails() {
-    self.showActivityIndicator()
+    self.loadingView.isHidden = false
     cityDetailViewModel.fetchCityDetailWeatherInformation(cityId:cityID) { result in
       switch(result) {
       case .success:
-        self.hideActivityIndicator()
+        self.loadingView.isHidden = true
         self.displayWeatherDetails()
       case .failure(let error):
-        self.hideActivityIndicator()
+        self.loadingView.isHidden = true
         self.showAlert(message: error.localizedDescription, title: Constants.errorTitle, action: UIAlertAction(title: Constants.ok, style: .default, handler: nil))
       }
     }
@@ -52,11 +56,13 @@ class CityDetailViewController: BaseViewController {
   
   func displayWeatherDetails() {
     cityNameLabel.text = cityDetailViewModel.getCityName()
+    cityDayNameLabel.text = cityDetailViewModel.getWeekday()
     cityTempDescriptionLabel.text = cityDetailViewModel.getWeatherDiscription()
     cityDegreeTempLabel.text = cityDetailViewModel.getCityTemperature()
     cityMinMaxTempLabel.text = cityDetailViewModel.getCityMinMaxTemperatureValues()
     weatherIconImageView.downloaded(from: cityDetailViewModel.getCityIcon())
     weatherDeatils = cityDetailViewModel.getAllWeatherDetailsArray()
+
     self.cityDetailTable.reloadData()
   }
 
@@ -75,9 +81,12 @@ extension CityDetailViewController : UITableViewDelegate , UITableViewDataSource
    
     let cell = tableView.dequeueReusableCell(withIdentifier: Constants.temperatureDetailsCellIdentifier , for: indexPath)  as! TemperatureDetailsCell
     cell.accessibilityIdentifier = "cityCell_\(indexPath.row)"
-    cell.tempKeyLabel.text = "Today"
-    cell.tempValueLabel.text = weatherDeatils[0]["Today"]
-
+   
+    for key in weatherDeatils[indexPath.row].keys {
+      cell.tempKeyLabel.text = key
+      cell.tempValueLabel.text = weatherDeatils[indexPath.row][key]
+    }
+   
     return cell
   }
   

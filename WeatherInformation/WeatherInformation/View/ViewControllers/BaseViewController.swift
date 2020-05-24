@@ -12,12 +12,21 @@ class BaseViewController: UIViewController {
   
   //MARK: - Outlets and Variables
   var activityIndicator = UIActivityIndicatorView()
+  var loadingView: LoadingView! = nil
+  var errorView: ErrorView! = nil
   
   //MARK: - View Lifecycle Methods
   override func viewDidLoad() {
     super.viewDidLoad()
     self.addTapGesture()
     // Do any additional setup after loading the view.
+  }
+  
+  func setUpLodingAndErrorView() {
+         let aux = attachAuxilliaryViews()
+         loadingView = aux.loading
+//         errorView = aux.error
+//         errorView.addRetryHandler(self, action: #selector(retryPressed))
   }
   
   //MARK: - Add tap Gesture to View
@@ -64,4 +73,31 @@ class BaseViewController: UIViewController {
   @objc func dismissKeyboard() {
     view.endEditing(true)
   }
+}
+
+
+// AuxilliaryViewAttachment
+extension UIViewController {
+
+    /// Create, attach, layout and auxillary views, LoadingView and ErrorView
+    public func attachAuxilliaryViews() -> (loading: LoadingView, error: ErrorView) {
+        guard let nc = navigationController else {
+            fatalError("UIViewController must belong to a UINavigationController")
+        }
+        let margins = nc.view.layoutMarginsGuide
+        // Loading View
+        let lv = LoadingView.create()
+        nc.view.addSubview(lv)
+      nc.view.bringSubviewToFront(lv)
+        LayoutHelper.fillAndCentre(lv, margins: margins)
+        // Error View
+        let ev = ErrorView.create()
+        nc.view.addSubview(ev)
+      nc.view.bringSubviewToFront(ev)
+        LayoutHelper.fillAndCentre(ev, margins: margins)
+        // Hide both by default
+        ev.isHidden = true
+        lv.isHidden = true
+        return (loading: lv, error: ev)
+    }
 }

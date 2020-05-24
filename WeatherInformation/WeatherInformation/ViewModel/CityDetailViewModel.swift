@@ -42,6 +42,9 @@ class CityDetailViewModel : NSObject {
     return Formatters.Temp.string(from: Float(self.city[0].main?.temp ?? 0.0))
   }
 
+  func getWeekday() -> String {
+    return Formatters.Weekday.string(from: Int(self.city[0].dt ?? 0))
+  }
  
   func getCityIcon() -> String {
     return WeatherApi.getURlForWeatherIcon(icon: city[0].weather?[0].icon ?? "")
@@ -58,19 +61,23 @@ class CityDetailViewModel : NSObject {
     return city[0].name ?? ""
   }
   
-  func getAllWeatherDetailsArray() -> [Dictionary<String, String>] {
+  func getAllWeatherDetailsArray() -> [Dictionary<String, String>]  {
     
     var weatherDeatils = [Dictionary<String, String>]()
     
     let todayForecastDetails = "\(city[0].weather?[0].weatherDescription ?? "") currently. It's\(Formatters.Temp.string(from: Float(self.city[0].main?.tempMin ?? 0.0))); the high today was forecast as \(Formatters.Temp.string(from: Float(self.city[0].main?.tempMax ?? 0.0)))."
     
+    let windString = "WNW \(String(describing: city[0].wind!.speed)) kph"
+   
     weatherDeatils.append(["Today": todayForecastDetails])
-   // weatherDeatils.append(["SUNRIZE": todayForecastDetails])
-   // weatherDeatils.append(["SUNSET": Formatters.sunTime.string(from: )])
-   // weatherDeatils.append(["HUMIDITY": (self.city[0].main?.humidity).str])
+    weatherDeatils.append(["SUNRIZE": Formatters.Sunrise.string(from: city[0].sys!.sunrise)])
+    weatherDeatils.append(["SUNSET": Formatters.Sunrise.string(from: city[0].sys!.sunset)])
+    weatherDeatils.append(["HUMIDITY": Formatters.Humidity.string(from: Int(self.city[0].main?.humidity ?? 0))])
     weatherDeatils.append(["PRESSURE": Formatters.Pressure.string(from: Float(self.city[0].main?.pressure ?? Int(0.0)))])
-  //  weatherDeatils.append(["WIND": todayForecastDetails])
-   // weatherDeatils.append(["FEELS LIKE": todayForecastDetails])
+    weatherDeatils.append(["WIND": windString])
+    weatherDeatils.append(["FEELS LIKE": Formatters.Humidity.string(from: Int(self.city[0].main?.feelsLike ?? 0.0))])
+
+    
     
     return weatherDeatils
   }

@@ -13,6 +13,8 @@ class CityListViewController: BaseViewController {
   //MARK: - Outlets and Variables
    @IBOutlet weak var cityListTable: UITableView!
    @IBOutlet weak var citySearchBar: UISearchBar!
+
+
    let cityAddViewModel = CityAddViewModel()
 
    
@@ -23,14 +25,14 @@ class CityListViewController: BaseViewController {
     }
 
   func getAllCitiesList() {
-    self.showActivityIndicator()
+    loadingView.isHidden = false
     cityAddViewModel.getAllCityDataFromLocalFile{ result in
       switch(result) {
       case .success:
-        self.hideActivityIndicator()
+        self.loadingView.isHidden = true
         self.cityListTable.reloadData()
       case .failure(let error):
-         self.hideActivityIndicator()
+        self.loadingView.isHidden = true
         self.showAlert(message: error.localizedDescription, title: Constants.errorTitle, action: UIAlertAction(title: Constants.ok, style: .default, handler: nil))
       }
     }

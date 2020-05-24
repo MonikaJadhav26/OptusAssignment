@@ -9,19 +9,19 @@
 import UIKit
 
 class CityTemperatureListViewController: BaseViewController {
-
+  
   //MARK: - Outlets and Variables
   @IBOutlet weak var cityTemperatureTable: UITableView!
   let cityTempViewModel = CityTemperatureListViewModel()
   //MARK: - View Lifecycle Methods
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setUpUI()
-      getCityTemperatureListFromURL()
-     // self.cityTempViewModel.fetchAllCityTemperatureRecordsFromDB()
-
-    }
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    setUpUI()
+    getCityTemperatureListFromURL()
+    // self.cityTempViewModel.fetchAllCityTemperatureRecordsFromDB()
     
+  }
+  
   //MARK: - Method for UI setup
   func setUpUI() {
     self.navigationController?.isNavigationBarHidden = true
@@ -30,15 +30,15 @@ class CityTemperatureListViewController: BaseViewController {
   
   //MARK: - Call to get all data server
   func getCityTemperatureListFromURL() {
-    self.showActivityIndicator()
+    loadingView.isHidden = false
     cityTempViewModel.fetchCityTemperatureData { result in
       switch(result) {
       case .success:
-        self.activityIndicator.stopAnimating()
-           self.cityTemperatureTable.reloadData()
+        self.loadingView.isHidden = true
+        self.cityTemperatureTable.reloadData()
       case .failure(let error):
-                self.hideActivityIndicator()
-                       self.showAlert(message: error.localizedDescription, title: Constants.errorTitle, action: UIAlertAction(title: Constants.ok, style: .default, handler: nil))
+        self.loadingView.isHidden = true
+        self.showAlert(message: error.localizedDescription, title: Constants.errorTitle, action: UIAlertAction(title: Constants.ok, style: .default, handler: nil))
       }
     }
   }
@@ -52,7 +52,7 @@ extension CityTemperatureListViewController : UITableViewDelegate , UITableViewD
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-   
+    
     let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cityTempCellIdentifier, for: indexPath) as! CityTemperatureTableViewCell
     cell.accessibilityIdentifier = "cityCell_\(indexPath.row)"
     cell.cityNameLabel.text = cityTempViewModel.getCityName(indexPath : indexPath)
@@ -74,17 +74,17 @@ extension CityTemperatureListViewController : UITableViewDelegate , UITableViewD
   }
   
   func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-   
+    
     let footerView =  Bundle.main.loadNibNamed("CityTempFooterViewCell", owner: self, options: nil)?.first as! CityTempFooterViewCell
     footerView.delegate = self
-      return footerView
+    return footerView
   }
   
   func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-      return 40
+    return 50
   }
   
-
+  
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return UITableView.automaticDimension
   }
@@ -92,7 +92,7 @@ extension CityTemperatureListViewController : UITableViewDelegate , UITableViewD
 }
 
 extension CityTemperatureListViewController : CityTempFooterViewDelegate {
- 
+  
   func degreeCelciusButtonTapped() {
     
   }
@@ -100,10 +100,10 @@ extension CityTemperatureListViewController : CityTempFooterViewDelegate {
   func degreeFareniteButtonTapped() {
     
   }
-    
+  
   func addButtonTapped() {
     let cityListViewController = UIStoryboard.init(name: Constants.storyboard, bundle: Bundle.main).instantiateViewController(withIdentifier: "CityListViewController") as? CityListViewController
     self.present(cityListViewController!, animated: true, completion: nil)
   }
-
+  
 }

@@ -21,6 +21,30 @@ public struct Formatters {
         formatter.timeZone = timeZone
         return formatter
     }()
+  
+  public struct Sunrise {
+    public static func string(from value: Int) -> String {
+      let date = Date(timeIntervalSince1970: TimeInterval(value))
+      let localDate = Formatters.sunTime.string(from: date)
+      return localDate
+    }
+  }
+  
+  // MARK: Weekday
+  public struct Weekday {
+    public static func string(from value: Int) -> String {
+      let date = Date(timeIntervalSince1970: TimeInterval(value))
+      let localDate = formatter.string(from: date)
+      return localDate
+    }
+    
+    public static let formatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE"
+        formatter.timeZone = timeZone
+        return formatter
+    }()
+  }
 
     // MARK: Temperature
     public struct Temp {
@@ -62,6 +86,20 @@ public struct Formatters {
             return f
         }()
     }
+  
+  // MARK: Humidity
+     public struct Humidity {
+         public static func string(from value: Int) -> String {
+             return "\(formatter.string(from: NSNumber(value:value))!)%"
+         }
+
+         public static let formatter: NumberFormatter = {
+             let f = NumberFormatter()
+             f.numberStyle = .decimal
+             f.maximumFractionDigits = 0
+             return f
+         }()
+     }
 
     // MARK: Rain Volume
     public struct RainVolume {
@@ -73,7 +111,7 @@ public struct Formatters {
     // MARK: Pressure
     public struct Pressure {
         public static func string(from value: Float) -> String {
-            return "\(formatter.string(from: NSNumber(value:value))!)hPa"
+            return "\(formatter.string(from: NSNumber(value:value))!) hPa"
         }
 
         public static let formatter: NumberFormatter = {
