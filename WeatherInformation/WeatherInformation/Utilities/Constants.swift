@@ -18,10 +18,13 @@ struct Constants {
   static let cityDetailCellIdentifier = "CityDetailTableViewCell"
   static let temperatureDetailsCellIdentifier = "TemperatureDetailsCell"
 
-
     static let storyboard = "Main"
     static let appDelegate = UIApplication.shared.delegate as? AppDelegate
-
+  static let ok = "OK"
+     static let errorTitle = "Error"
+     static let success = "success"
+     static let message = "Message"
+     static let alert = "Alert"
   
     
 }

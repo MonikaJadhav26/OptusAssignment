@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CityDetailViewController: UIViewController {
+class CityDetailViewController: BaseViewController {
 
   //MARK: - Outlets and Variables
   @IBOutlet weak var cityDetailTable: UITableView!
@@ -37,13 +37,15 @@ class CityDetailViewController: UIViewController {
     
   //MARK: - Call to get all data server
   func getCityWeatherDetails() {
+    self.showActivityIndicator()
     cityDetailViewModel.fetchCityDetailWeatherInformation(cityId:cityID) { result in
       switch(result) {
       case .success:
-        print(result)
+        self.hideActivityIndicator()
         self.displayWeatherDetails()
       case .failure(let error):
-        print(error)
+        self.hideActivityIndicator()
+        self.showAlert(message: error.localizedDescription, title: Constants.errorTitle, action: UIAlertAction(title: Constants.ok, style: .default, handler: nil))
       }
     }
   }

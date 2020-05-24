@@ -8,13 +8,12 @@
 
 import UIKit
 
-class CityListViewController: UIViewController {
+class CityListViewController: BaseViewController {
 
   //MARK: - Outlets and Variables
    @IBOutlet weak var cityListTable: UITableView!
    @IBOutlet weak var citySearchBar: UISearchBar!
    let cityAddViewModel = CityAddViewModel()
-
 
    
    //MARK: - View Lifecycle Methods
@@ -24,12 +23,15 @@ class CityListViewController: UIViewController {
     }
 
   func getAllCitiesList() {
+    self.showActivityIndicator()
     cityAddViewModel.getAllCityDataFromLocalFile{ result in
       switch(result) {
       case .success:
+        self.hideActivityIndicator()
         self.cityListTable.reloadData()
-      case .failure: break
-        
+      case .failure(let error):
+         self.hideActivityIndicator()
+        self.showAlert(message: error.localizedDescription, title: Constants.errorTitle, action: UIAlertAction(title: Constants.ok, style: .default, handler: nil))
       }
     }
   }

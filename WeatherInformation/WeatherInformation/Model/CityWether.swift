@@ -13,6 +13,26 @@
 
 import Foundation
 
+// MARK: - Initial Cities Temperature List
+struct InitialTemperature: Codable {
+    let cnt: Int
+    let list: [List]
+}
+
+// MARK: - List
+struct List: Codable {
+    let coord: Coord
+    let sys: Sys2
+    let weather: [Weather]
+    let main: Main
+    let visibility: Int
+    let wind: Wind
+    let clouds: Clouds
+    let dt, id: Int
+    let name: String
+}
+
+
 // MARK: - CityWether
 struct CityWether: Codable {
     let coord: Coord?
@@ -42,7 +62,7 @@ struct Coord: Codable {
 // MARK: - Main
 struct Main: Codable {
     let temp, feelsLike, tempMin, tempMax: Double
-    let pressure, humidity: Int
+    let pressure, humidity: Int?
 
     enum CodingKeys: String, CodingKey {
         case temp
@@ -58,6 +78,12 @@ struct Sys: Codable {
     let type, id: Int
     let country: String
     let sunrise, sunset: Int
+}
+
+// MARK: - Sys
+struct Sys2: Codable {
+    let country: String
+    let timezone, sunrise, sunset: Int
 }
 
 // MARK: - Weather

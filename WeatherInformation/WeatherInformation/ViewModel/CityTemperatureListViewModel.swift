@@ -20,31 +20,40 @@ class CityTemperatureListViewModel : NSObject {
   
   //MARK: - Method for fetching all city temperature data
   func fetchCityTemperatureData(completion: @escaping (Result<Bool, Error>) -> Void) {
-    apiClient.getAllCityTemperatureList { (result) in
-      DispatchQueue.main.async {
-        switch(result) {
-        case .success(let result):
-          self.storeCityTemperatureInformationInDatabase(result: result)
-          completion(.success(true))
-        case .failure(let error):
-          completion(.failure(error))
+    
+    if fetchAllCityTemperatureRecordsFromDB() {
+      completion(.success(true))
+    }else {
+        
+        apiClient.getInitialCitiesTemperatureList { (result) in
+          DispatchQueue.main.async {
+            switch(result) {
+            case .success(let result):
+              self.storeCityTemperatureInformationInDatabase(result: result.list)
+              completion(.success(true))
+            case .failure(let error):
+              completion(.failure(error))
+            }
+          }
         }
-      }
     }
   }
   
   
-  func storeCityTemperatureInformationInDatabase(result : CityWether)  {
+  func storeCityTemperatureInformationInDatabase(result : [List])  {
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
     
+    print(result.count)
+    
+    for city in result {
     // Create City
     let entityCity = NSEntityDescription.entity(forEntityName: "City", in: appDelegate.managedObjectContext)
     let newCity = NSManagedObject(entity: entityCity!, insertInto: appDelegate.managedObjectContext)
     
     // Populate City
-    newCity.setValue(result.name, forKey: "name")
-    newCity.setValue(result.main?.temp, forKey: "temperature")
-    newCity.setValue(result.id, forKey: "id")
+      newCity.setValue(city.name, forKey: "name")
+      newCity.setValue(city.main.temp, forKey: "temperature")
+      newCity.setValue(city.id, forKey: "id")
     
     do {
       try newCity.managedObjectContext?.save()
@@ -53,9 +62,10 @@ class CityTemperatureListViewModel : NSObject {
       print(saveError)
     }
   }
+  }
   
-  func fetchAllCityTemperatureRecordsFromDB() {
-    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+  func fetchAllCityTemperatureRecordsFromDB() -> Bool {
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return false}
     
     // Initialize Fetch Request
     let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
@@ -72,12 +82,15 @@ class CityTemperatureListViewModel : NSObject {
         for city in result {
           cityTempList.append((city as! NSManagedObject) as! City)
         }
+        return true
       }
       
     } catch {
       let fetchError = error as NSError
       print(fetchError)
     }
+    
+    return false
   }
   
   func getNumberOfTotalCities(section: Int) -> Int {

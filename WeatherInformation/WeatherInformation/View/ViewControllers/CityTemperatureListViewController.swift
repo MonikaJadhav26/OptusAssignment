@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CityTemperatureListViewController: UIViewController {
+class CityTemperatureListViewController: BaseViewController {
 
   //MARK: - Outlets and Variables
   @IBOutlet weak var cityTemperatureTable: UITableView!
@@ -17,8 +17,8 @@ class CityTemperatureListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
-     // getCityTemperatureListFromURL()
-      self.cityTempViewModel.fetchAllCityTemperatureRecordsFromDB()
+      getCityTemperatureListFromURL()
+     // self.cityTempViewModel.fetchAllCityTemperatureRecordsFromDB()
 
     }
     
@@ -30,13 +30,15 @@ class CityTemperatureListViewController: UIViewController {
   
   //MARK: - Call to get all data server
   func getCityTemperatureListFromURL() {
+    self.showActivityIndicator()
     cityTempViewModel.fetchCityTemperatureData { result in
       switch(result) {
       case .success:
-        self.cityTempViewModel.fetchAllCityTemperatureRecordsFromDB()
+        self.activityIndicator.stopAnimating()
            self.cityTemperatureTable.reloadData()
       case .failure(let error):
-        print(error)
+                self.hideActivityIndicator()
+                       self.showAlert(message: error.localizedDescription, title: Constants.errorTitle, action: UIAlertAction(title: Constants.ok, style: .default, handler: nil))
       }
     }
   }

@@ -67,7 +67,7 @@ class CityDetailViewModel : NSObject {
     weatherDeatils.append(["Today": todayForecastDetails])
    // weatherDeatils.append(["SUNRIZE": todayForecastDetails])
    // weatherDeatils.append(["SUNSET": Formatters.sunTime.string(from: )])
-   // weatherDeatils.append(["HUMIDITY": String(self.city[0].main?.humidity)])
+   // weatherDeatils.append(["HUMIDITY": (self.city[0].main?.humidity).str])
     weatherDeatils.append(["PRESSURE": Formatters.Pressure.string(from: Float(self.city[0].main?.pressure ?? Int(0.0)))])
   //  weatherDeatils.append(["WIND": todayForecastDetails])
    // weatherDeatils.append(["FEELS LIKE": todayForecastDetails])
