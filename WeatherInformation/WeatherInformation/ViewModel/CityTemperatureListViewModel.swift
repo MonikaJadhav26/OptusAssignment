@@ -16,26 +16,21 @@ class CityTemperatureListViewModel : NSObject {
   //MARK: - Variables
   var apiClient: ApiClient = ApiClient()
   var cityTempList = Array<City>()
-
+  
   
   //MARK: - Method for fetching all city temperature data
   func fetchCityTemperatureData(completion: @escaping (Result<Bool, Error>) -> Void) {
-    
-//    if fetchAllCityTemperatureRecordsFromDB() {
-//      completion(.success(true))
-//    }else {
-        apiClient.getInitialCitiesTemperatureList { (result) in
-          DispatchQueue.main.async {
-            switch(result) {
-            case .success(let result):
-              self.storeCityTemperatureInformationInDatabase(result: result.list)
-              completion(.success(true))
-            case .failure(let error):
-              completion(.failure(error))
-            }
-          }
+    apiClient.getInitialCitiesTemperatureList { (result) in
+      DispatchQueue.main.async {
+        switch(result) {
+        case .success(let result):
+          self.storeCityTemperatureInformationInDatabase(result: result.list)
+          completion(.success(true))
+        case .failure(let error):
+          completion(.failure(error))
         }
-    //}
+      }
+    }
   }
   
   func storeCityTemperatureInformationInDatabase(result : [List])  {
@@ -68,10 +63,13 @@ class CityTemperatureListViewModel : NSObject {
     
   }
   
-    func getCityTemperature(indexPath: IndexPath) -> String {
-      return Formatters.Temp.string(from: Float(self.cityTempList[indexPath.row].temperature))
-
-    }
+  func getCityTemperature(indexPath: IndexPath) -> String {
+    return Formatters.Temp.string(from: Float(self.cityTempList[indexPath.row].temperature))
+  }
+  
+  func getCityTemperatureInFaranite(indexPath: IndexPath) -> String {
+    return Formatters.Temp.faraniteString(from: Float(self.cityTempList[indexPath.row].temperature))
+  }
   
 }
 

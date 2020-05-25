@@ -13,9 +13,11 @@ class CityTemperatureListViewController: BaseViewController {
   //MARK: - Outlets and Variables
   @IBOutlet weak var cityTemperatureTable: UITableView!
   @IBOutlet weak var backgroundImageView: UIImageView!
-
+  
   let cityTempViewModel = CityTemperatureListViewModel()
   var timer: Timer?
+  var isCelciusSelected : Bool?
+  
   //MARK: - View Lifecycle Methods
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -25,24 +27,30 @@ class CityTemperatureListViewController: BaseViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(true)
-    self.loadingView.isHidden = true
+    isCelciusSelected = true
     if cityTempViewModel.fetchAllCityTemperatureRecordsFromDB() {
       self.cityTemperatureTable.reloadData()
     }else {
-       getCityTemperatureListFromURL()
+      getCityTemperatureListFromURL()
     }
   }
-
+  
   override func viewDidDisappear(_ animated: Bool) {
-      super.viewDidDisappear(animated)
-      stopTimer()
+    super.viewDidDisappear(animated)
+    stopTimer()
   }
   
+  //MARK: - Timer for fetching data from server after perticular time
   func stopTimer() {
-      if timer != nil {
-          timer?.invalidate()
-          timer = nil
-      }
+    if timer != nil {
+      timer?.invalidate()
+      timer = nil
+    }
+  }
+  func startTimer() {
+    timer =  Timer.scheduledTimer(withTimeInterval: 1000.0, repeats: true) { (timer) in
+      self.getCityTemperatureListFromURL()
+    }
   }
   
   //MARK: - Method for UI setup
@@ -50,22 +58,18 @@ class CityTemperatureListViewController: BaseViewController {
     self.navigationController?.isNavigationBarHidden = true
     self.cityTemperatureTable.register(UINib.init(nibName: Constants.cityTempCellIdentifier, bundle: nil), forCellReuseIdentifier: Constants.cityTempCellIdentifier)
     self.setUpLodingView()
-    
-    timer =  Timer.scheduledTimer(withTimeInterval: 1000.0, repeats: true) { (timer) in
-      self.getCityTemperatureListFromURL()
-    }
-    
-    if Formatters.CurrentTime.string() == "TODAY" {
-      backgroundImageView.image = UIImage(named: "dayBackground")
+    startTimer()
+    if Formatters.CurrentTime.string() == Constants.CurrentTime.day.rawValue {
+      backgroundImageView.image = Constants.dayBackgraoundImageForTemperatureList
     } else {
-      backgroundImageView.image = UIImage(named: "nightBackground")
+      backgroundImageView.image = Constants.nightBackgraoundImageForTemperatureList
     }
   }
   
-
+  
   
   //MARK: - Call to get all data server
- @objc func getCityTemperatureListFromURL() {
+  @objc func getCityTemperatureListFromURL() {
     loadingView.isHidden = false
     cityTempViewModel.fetchCityTemperatureData { result in
       switch(result) {
@@ -93,14 +97,18 @@ extension CityTemperatureListViewController : UITableViewDelegate , UITableViewD
     let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cityTempCellIdentifier, for: indexPath) as! CityTemperatureTableViewCell
     cell.accessibilityIdentifier = "cityCell_\(indexPath.row)"
     cell.cityNameLabel.text = cityTempViewModel.getCityName(indexPath : indexPath)
-    cell.cityTempLabel.text = cityTempViewModel.getCityTemperature(indexPath : indexPath)
+    if isCelciusSelected! {
+      cell.cityTempLabel.text = cityTempViewModel.getCityTemperature(indexPath : indexPath)
+    }else {
+      cell.cityTempLabel.text = cityTempViewModel.getCityTemperatureInFaranite(indexPath : indexPath)
+    }
     
     return cell
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
-    let cityDetailViewController = UIStoryboard.init(name: Constants.storyboard, bundle: Bundle.main).instantiateViewController(withIdentifier: "CityDetailViewController") as? CityDetailViewController
+    let cityDetailViewController = UIStoryboard.init(name: Constants.storyboard, bundle: Bundle.main).instantiateViewController(withIdentifier: Constants.cityDetailViewController) as? CityDetailViewController
     cityDetailViewController?.cityID = cityTempViewModel.getCityId(indexPath : indexPath)
     self.navigationController?.pushViewController(cityDetailViewController!, animated: true)
   }
@@ -111,35 +119,46 @@ extension CityTemperatureListViewController : UITableViewDelegate , UITableViewD
   
   func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
     
-    let footerView =  Bundle.main.loadNibNamed("CityTempFooterViewCell", owner: self, options: nil)?.first as! CityTempFooterViewCell
+    let footerView =  Bundle.main.loadNibNamed(Constants.cityTempFooterViewCell, owner: self, options: nil)?.first as! CityTempFooterViewCell
     footerView.delegate = self
+    if isCelciusSelected! {
+      footerView.celciusButton.setTitleColor(.white, for: .normal)
+      footerView.faraniteButton.setTitleColor(.lightGray, for: .normal)
+      
+    }else {
+      footerView.celciusButton.setTitleColor(.lightGray, for: .normal)
+      
+      footerView.faraniteButton.setTitleColor(.white, for: .normal)
+      
+    }
     return footerView
   }
   
   func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
     return 50
   }
-    
+  
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return UITableView.automaticDimension
   }
 }
 
+//MARK: - UITableView Footer delegate methods
 extension CityTemperatureListViewController : CityTempFooterViewDelegate {
-  
-  func degreeCelciusButtonTapped() {
-    
+  func degreeCelciusButtonTapped(sender: UIButton) {
+    isCelciusSelected = true
+    cityTemperatureTable.reloadData()
   }
   
-  func degreeFareniteButtonTapped() {
+  func degreeFareniteButtonTapped(sender: UIButton) {
+    isCelciusSelected = false
+    cityTemperatureTable.reloadData()
     
   }
   
   func addButtonTapped() {
-    let cityListViewController = UIStoryboard.init(name: Constants.storyboard, bundle: Bundle.main).instantiateViewController(withIdentifier: "CityListViewController") as? CityListViewController
-    cityListViewController?.modalPresentationStyle = .fullScreen
-    self.loadingView.isHidden = false
-    self.present(cityListViewController!, animated: true, completion: nil)
+    let cityListViewController = UIStoryboard.init(name: Constants.storyboard, bundle: Bundle.main).instantiateViewController(withIdentifier: Constants.cityListViewController) as? CityListViewController
+    self.navigationController?.pushViewController(cityListViewController!, animated: true)
   }
   
 }

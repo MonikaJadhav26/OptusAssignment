@@ -9,39 +9,42 @@
 import UIKit
 
 class CityListViewController: BaseViewController {
-
+  
   //MARK: - Outlets and Variables
-   @IBOutlet weak var cityListTable: UITableView!
-   @IBOutlet weak var citySearchBar: UISearchBar!
-
-
-   let cityAddViewModel = CityAddViewModel()
-
-   
-   //MARK: - View Lifecycle Methods
-    override func viewDidLoad() {
-        super.viewDidLoad()
-   //  self.setUpLodingView()
-      getAllCitiesList()
-
-    }
-
+  @IBOutlet weak var cityListTable: UITableView!
+  @IBOutlet weak var citySearchBar: UISearchBar!
+  
+  
+  let cityAddViewModel = CityAddViewModel()
+  
+  
+  //MARK: - View Lifecycle Methods
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    self.setUpLodingView()
+    getAllCitiesList()
+    
+  }
+  
+  //MARK: - Fetch all cities list from local file
   func getAllCitiesList() {
-   // loadingView.isHidden = false
+    loadingView.isHidden = false
     cityAddViewModel.getAllCityDataFromLocalFile{ result in
       switch(result) {
       case .success:
-      //  self.loadingView.isHidden = true
+        self.loadingView.isHidden = true
         self.cityListTable.reloadData()
       case .failure(let error):
-       // self.loadingView.isHidden = true
+        self.loadingView.isHidden = true
         self.showAlert(message: error.localizedDescription, title: Constants.errorTitle, action: UIAlertAction(title: Constants.ok, style: .default, handler: nil))
       }
     }
   }
   
+  //MARK: - Back to temperature list controlelr
+  
   @IBAction func cancelButtonClickedAction(_ sender: Any) {
-          self.dismiss(animated: true, completion: nil)
+    self.navigationController?.popViewController(animated: true)
   }
 }
 
@@ -52,7 +55,7 @@ extension CityListViewController : UITableViewDelegate , UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-   
+    
     let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cityListCellIdentifier)
     cell?.accessibilityIdentifier = "cityCell_\(indexPath.row)"
     cell?.textLabel?.text = cityAddViewModel.getCityName(indexPath : indexPath)
@@ -60,15 +63,16 @@ extension CityListViewController : UITableViewDelegate , UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    self.loadingView.isHidden = false
     tableView.deselectRow(at: indexPath, animated: true)
     let cityID = cityAddViewModel.getCityId(indexPath: indexPath)
     cityAddViewModel.fetchCityDetailWeatherForPerticularCity(cityId: cityID) { result in
       switch(result) {
       case .success:
-       // self.loadingView.isHidden = true
+        self.loadingView.isHidden = true
         self.dismiss(animated: true, completion: nil)
       case .failure(let error):
-       // self.loadingView.isHidden = true
+        self.loadingView.isHidden = true
         self.showAlert(message: error.localizedDescription, title: Constants.errorTitle, action: UIAlertAction(title: Constants.ok, style: .default, handler: nil))
       }
     }

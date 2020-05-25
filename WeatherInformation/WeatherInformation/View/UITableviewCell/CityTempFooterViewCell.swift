@@ -9,35 +9,41 @@
 import UIKit
 
 protocol CityTempFooterViewDelegate {
-    func addButtonTapped()
-    func degreeCelciusButtonTapped()
-    func degreeFareniteButtonTapped()
+  func addButtonTapped()
+  func degreeCelciusButtonTapped(sender: UIButton)
+  func degreeFareniteButtonTapped(sender: UIButton)
 }
 
+
 class CityTempFooterViewCell: UITableViewCell {
-
+  
+  //MARK: - Outlets and Variables
+  
   @IBOutlet weak var addButton: UIButton!
-
+  @IBOutlet weak var celciusButton: UIButton!
+  @IBOutlet weak var faraniteButton: UIButton!
+  
+  
   var delegate: CityTempFooterViewDelegate? = nil
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-      addButton.layer.cornerRadius = addButton.frame.size.width / 2
-      addButton.layer.borderWidth = 1
-      addButton.layer.borderColor = UIColor.white.cgColor
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
+  
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    addButton.layer.cornerRadius = addButton.frame.size.width / 2
+    addButton.layer.borderWidth = 1
+    addButton.layer.borderColor = UIColor.white.cgColor
+  }
+  
+  override func setSelected(_ selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
+  }
+  
   @IBAction func addButtonClickedAction(_ sender: Any) {
-          self.delegate?.addButtonTapped()
+    self.delegate?.addButtonTapped()
   }
   @IBAction func degreeCelciusButtonClickedAction(_ sender: Any) {
-          self.delegate?.degreeCelciusButtonTapped()
+    self.delegate?.degreeCelciusButtonTapped(sender: sender as! UIButton)
   }
   @IBAction func degreeFareniteClickedAction(_ sender: Any) {
-          self.delegate?.degreeFareniteButtonTapped()
+    self.delegate?.degreeFareniteButtonTapped(sender: sender as! UIButton)
   }
 }

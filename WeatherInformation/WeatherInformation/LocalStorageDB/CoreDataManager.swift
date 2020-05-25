@@ -13,16 +13,14 @@ import UIKit
 class CoreDataManager {
   
   
+  //MARK: - Core Data Stack
   //1
   static let sharedManager = CoreDataManager()
   private init() {} // Prevent clients from creating another instance.
   
   //2
   lazy var persistentContainer: NSPersistentContainer = {
-    
     let container = NSPersistentContainer(name: "CityTemperature")
-    
-    
     container.loadPersistentStores(completionHandler: { (storeDescription, error) in
       
       if let error = error as NSError? {
@@ -48,19 +46,45 @@ class CoreDataManager {
   }
   
   var cityList = Array<City>()
-
+  
+  //MARK: - Methods for performing operations on database
   /*Insert*/
   func insertCity(name: String, id : Int , temperature : Double)  {
     
     if !checkRecordForSelectedIdIsExists(id: id)  {
-    
+      
+      let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
+      
+      let entity = NSEntityDescription.entity(forEntityName: "City",
+                                              in: managedContext)!
+      
+      let newCity = NSManagedObject(entity: entity,
+                                    insertInto: managedContext)
+      
+      // Initialize Fetch Request
+      let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
+      //Add Predicate
+      let predicate = NSPredicate(format: "(id = %d)", id)
+      fetchRequest.entity = entity
+      fetchRequest.predicate = predicate
+      
+      // Populate City
+      newCity.setValue(name, forKey: "name")
+      newCity.setValue(id, forKey: "id")
+      newCity.setValue(temperature, forKey: "temperature")
+      do {
+        try managedContext.save()
+      } catch let error as NSError {
+        print("Could not save. \(error), \(error.userInfo)")
+      }
+    }
+  }
+  
+  func checkRecordForSelectedIdIsExists(id : Int) -> Bool {
     let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
     
     let entity = NSEntityDescription.entity(forEntityName: "City",
                                             in: managedContext)!
-    
-    let newCity = NSManagedObject(entity: entity,
-                                 insertInto: managedContext)
     
     // Initialize Fetch Request
     let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
@@ -68,47 +92,22 @@ class CoreDataManager {
     let predicate = NSPredicate(format: "(id = %d)", id)
     fetchRequest.entity = entity
     fetchRequest.predicate = predicate
-    
-        // Populate City
-            newCity.setValue(name, forKey: "name")
-            newCity.setValue(id, forKey: "id")
-            newCity.setValue(temperature, forKey: "temperature")
     do {
-      try managedContext.save()
-    } catch let error as NSError {
-      print("Could not save. \(error), \(error.userInfo)")
+      let result = try managedContext.fetch(fetchRequest)
+      if (result.count > 0) {
+        let city = (result[0] as! NSManagedObject) as! City
+        if city.id == id {
+          return true
+        }
+      }
+    } catch {
+      let fetchError = error as NSError
+      print(fetchError)
     }
-    }
-  }
-  
-  func checkRecordForSelectedIdIsExists(id : Int) -> Bool {
-    let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
-
-    let entity = NSEntityDescription.entity(forEntityName: "City",
-                                               in: managedContext)!
-       
-       // Initialize Fetch Request
-       let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
-       //Add Predicate
-       let predicate = NSPredicate(format: "(id = %d)", id)
-       fetchRequest.entity = entity
-       fetchRequest.predicate = predicate
-        do {
-         let result = try managedContext.fetch(fetchRequest)
-         if (result.count > 0) {
-           let city = (result[0] as! NSManagedObject) as! City
-          if city.id == id {
-            return true
-          }
-          }
-         } catch {
-           let fetchError = error as NSError
-           print(fetchError)
-         }
     return false
   }
   
-  
+  /*Fecth*/
   func fetchAllCities() -> Array<City> {
     
     cityList.removeAll()
@@ -122,7 +121,7 @@ class CoreDataManager {
     
     // Configure Fetch Request
     fetchRequest.entity = entityDescription
-      do {
+    do {
       let result = try managedContext.fetch(fetchRequest)
       if (result.count > 0) {
         for city in result {
@@ -134,8 +133,8 @@ class CoreDataManager {
       let fetchError = error as NSError
       print(fetchError)
     }
-  
-  return cityList
+    
+    return cityList
   }
   
 }

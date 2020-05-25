@@ -42,20 +42,20 @@ class CityDetailViewModel : NSObject {
   func getCityTemperature() -> String {
     return Formatters.Temp.string(from: Float(self.city[0].main?.temp ?? 0.0))
   }
-
+  
   
   func getImageForBackground() -> UIImage {
-    if Formatters.Time.string(from: Int(self.city[0].dt ?? 0)) == "TODAY"
+    if Formatters.Time.string(from: Int(self.city[0].dt ?? 0)) == Constants.CurrentTime.day.rawValue
     {
-      return UIImage(named: "dayBackgroundForDetail")!
+      return Constants.dayBackgraoundImageDetail!
     }
-    return UIImage(named: "nightBackgroundForDetail")!
+    return Constants.nightBackgraoundImageDetail!
   }
   
   func getWeekday() -> String {
     return "\(Formatters.Weekday.string(from: Int(self.city[0].dt ?? 0)))  \(Formatters.Time.string(from: Int(self.city[0].dt ?? 0)))"
   }
- 
+  
   func getCityIcon() -> String {
     return WeatherApi.getURlForWeatherIcon(icon: city[0].weather?[0].icon ?? "")
   }
@@ -78,7 +78,7 @@ class CityDetailViewModel : NSObject {
     let todayForecastDetails = "\(city[0].weather?[0].weatherDescription ?? "") currently. It's\(Formatters.Temp.string(from: Float(self.city[0].main?.tempMin ?? 0.0))); the high today was forecast as \(Formatters.Temp.string(from: Float(self.city[0].main?.tempMax ?? 0.0)))."
     
     let windString = "WNW \(String(describing: city[0].wind!.speed)) kph"
-   
+    
     weatherDeatils.append(["SUMMARY": todayForecastDetails])
     weatherDeatils.append(["SUNRIZE": Formatters.Sunrise.string(from: city[0].sys!.sunrise)])
     weatherDeatils.append(["SUNSET": Formatters.Sunrise.string(from: city[0].sys!.sunset)])
@@ -86,8 +86,6 @@ class CityDetailViewModel : NSObject {
     weatherDeatils.append(["PRESSURE": Formatters.Pressure.string(from: Float(self.city[0].main?.pressure ?? Int(0.0)))])
     weatherDeatils.append(["WIND": windString])
     weatherDeatils.append(["FEELS LIKE": Formatters.Humidity.string(from: Int(self.city[0].main?.feelsLike ?? 0.0))])
-
-    
     
     return weatherDeatils
   }

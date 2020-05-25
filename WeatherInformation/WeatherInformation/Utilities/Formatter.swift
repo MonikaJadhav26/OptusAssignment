@@ -9,18 +9,18 @@
 import Foundation
 
 public struct Formatters {
-    /// TimeZone for formatting
-    public static let timeZone: TimeZone = {
-       return TimeZone.current
-    }()
-
-    // MARK: Sunrise/Sunset
-    public static let sunTime: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm"
-        formatter.timeZone = timeZone
-        return formatter
-    }()
+  /// TimeZone for formatting
+  public static let timeZone: TimeZone = {
+    return TimeZone.current
+  }()
+  
+  // MARK: Sunrise/Sunset
+  public static let sunTime: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "HH:mm"
+    formatter.timeZone = timeZone
+    return formatter
+  }()
   
   public struct Sunrise {
     public static func string(from value: Int) -> String {
@@ -39,10 +39,10 @@ public struct Formatters {
     }
     
     public static let formatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE"
-        formatter.timeZone = timeZone
-        return formatter
+      let formatter = DateFormatter()
+      formatter.dateFormat = "EEEE"
+      formatter.timeZone = timeZone
+      return formatter
     }()
   }
   
@@ -71,80 +71,85 @@ public struct Formatters {
       }
     }
   }
-
-    // MARK: Temperature
-    public struct Temp {
-        public static func string(from value: Float) -> String {
-            return "\(formatter.string(from: NSNumber(value:value))!)°"
-        }
-
-        public static let formatter: NumberFormatter = {
-            let nf = NumberFormatter()
-            nf.numberStyle = .decimal
-            nf.maximumFractionDigits = 1
-            return nf
-        }()
+  
+  // MARK: Temperature
+  public struct Temp {
+    public static func string(from value: Float) -> String {
+      return "\(formatter.string(from: NSNumber(value:value))!)°"
     }
-
-    // MARK: Distance
-    public struct Distance {
-        public static func string(from meters: Float) -> String {
-            return "\(formatter.string(from: NSNumber(value:meters))!)m"
-        }
-
-        public static let formatter: NumberFormatter = {
-            let f = NumberFormatter()
-            f.numberStyle = .decimal
-            return f
-        }()
+    
+    public static func faraniteString(from value: Float) -> String {
+      let faraniteTemperature = value * 1.8 + 32
+      return "\(formatter.string(from: NSNumber(value:faraniteTemperature))!)°"
     }
-
-    // MARK: Percentage
-    public struct Percentage {
-        public static func string(from value: Float) -> String {
-            return "\(formatter.string(from: NSNumber(value:value))!)%"
-        }
-
-        public static let formatter: NumberFormatter = {
-            let f = NumberFormatter()
-            f.numberStyle = .decimal
-            f.maximumFractionDigits = 0
-            return f
-        }()
+    
+    public static let formatter: NumberFormatter = {
+      let nf = NumberFormatter()
+      nf.numberStyle = .decimal
+      nf.maximumFractionDigits = 1
+      return nf
+    }()
+  }
+  
+  // MARK: Distance
+  public struct Distance {
+    public static func string(from meters: Float) -> String {
+      return "\(formatter.string(from: NSNumber(value:meters))!)m"
     }
+    
+    public static let formatter: NumberFormatter = {
+      let f = NumberFormatter()
+      f.numberStyle = .decimal
+      return f
+    }()
+  }
+  
+  // MARK: Percentage
+  public struct Percentage {
+    public static func string(from value: Float) -> String {
+      return "\(formatter.string(from: NSNumber(value:value))!)%"
+    }
+    
+    public static let formatter: NumberFormatter = {
+      let f = NumberFormatter()
+      f.numberStyle = .decimal
+      f.maximumFractionDigits = 0
+      return f
+    }()
+  }
   
   // MARK: Humidity
-     public struct Humidity {
-         public static func string(from value: Int) -> String {
-             return "\(formatter.string(from: NSNumber(value:value))!)%"
-         }
-
-         public static let formatter: NumberFormatter = {
-             let f = NumberFormatter()
-             f.numberStyle = .decimal
-             f.maximumFractionDigits = 0
-             return f
-         }()
-     }
-
-    // MARK: Rain Volume
-    public struct RainVolume {
-        public static func string(from value: Float) -> String {
-            return "\(Percentage.formatter.string(from: NSNumber(value:value))!)mm"
-        }
+  public struct Humidity {
+    public static func string(from value: Int) -> String {
+      return "\(formatter.string(from: NSNumber(value:value))!)%"
     }
-
-    // MARK: Pressure
-    public struct Pressure {
-        public static func string(from value: Float) -> String {
-            return "\(formatter.string(from: NSNumber(value:value))!) hPa"
-        }
-
-        public static let formatter: NumberFormatter = {
-            let f = NumberFormatter()
-            f.numberStyle = .decimal
-            f.maximumFractionDigits = 0
-            return f
-        }()
+    
+    public static let formatter: NumberFormatter = {
+      let f = NumberFormatter()
+      f.numberStyle = .decimal
+      f.maximumFractionDigits = 0
+      return f
+    }()
+  }
+  
+  // MARK: Rain Volume
+  public struct RainVolume {
+    public static func string(from value: Float) -> String {
+      return "\(Percentage.formatter.string(from: NSNumber(value:value))!)mm"
     }
+  }
+  
+  // MARK: Pressure
+  public struct Pressure {
+    public static func string(from value: Float) -> String {
+      return "\(formatter.string(from: NSNumber(value:value))!) hPa"
+    }
+    
+    public static let formatter: NumberFormatter = {
+      let f = NumberFormatter()
+      f.numberStyle = .decimal
+      f.maximumFractionDigits = 0
+      return f
+    }()
+  }
 }

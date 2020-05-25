@@ -9,22 +9,22 @@
 import UIKit
 
 class CityTemperatureTableViewCell: UITableViewCell {
-
-  //MARK: - Outlets
-     @IBOutlet weak var backgroundContainerView: UIView!
-     @IBOutlet weak var cityNameLabel: UILabel!
-     @IBOutlet weak var cityTempLabel: UILabel!
-     
   
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+  //MARK: - Outlets and Variables
+  @IBOutlet weak var backgroundContainerView: UIView!
+  @IBOutlet weak var cityNameLabel: UILabel!
+  @IBOutlet weak var cityTempLabel: UILabel!
+  
+  
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    // Initialization code
+  }
+  
+  override func setSelected(_ selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
     
+    // Configure the view for the selected state
+  }
+  
 }

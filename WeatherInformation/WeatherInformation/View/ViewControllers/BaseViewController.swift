@@ -22,9 +22,9 @@ class BaseViewController: UIViewController {
   }
   
   func setUpLodingView() {
-        let aux = attachAuxilliaryViews()
-        loadingView = aux.self
-
+    let aux = attachAuxilliaryViews()
+    loadingView = aux.self
+    
   }
   
   @objc func retryPressed() {
@@ -79,19 +79,19 @@ class BaseViewController: UIViewController {
 
 // AuxilliaryViewAttachment
 extension UIViewController {
-
-    /// Create, attach, layout and auxillary views, LoadingView
+  
+  /// Create, attach, layout and auxillary views, LoadingView
   public func attachAuxilliaryViews() -> (LoadingView) {
-        guard let nc = navigationController else {
-            fatalError("UIViewController must belong to a UINavigationController")
-        }
-        let margins = nc.view.layoutMarginsGuide
-        // Loading View
-        let lv = LoadingView.create()
-        nc.view.addSubview(lv)
-        nc.view.bringSubviewToFront(lv)
-        LayoutHelper.fillAndCentre(lv, margins: margins)
-        lv.isHidden = true
-        return  lv
+    guard let nc = navigationController else {
+      fatalError("UIViewController must belong to a UINavigationController")
     }
+    let margins = nc.view.layoutMarginsGuide
+    // Loading View
+    let lv = LoadingView.create()
+    nc.view.addSubview(lv)
+    nc.view.bringSubviewToFront(lv)
+    LayoutHelper.fillAndCentre(lv, margins: margins)
+    lv.isHidden = true
+    return  lv
+  }
 }

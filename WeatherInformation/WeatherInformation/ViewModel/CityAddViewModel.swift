@@ -20,15 +20,15 @@ class CityAddViewModel : NSObject {
   
   
   func searchCity(with searchText: String, completion: @escaping () -> Void) {
-          if !searchText.isEmpty {
-              citySearchedArray = self.cityOriginalArray
-              self.cityInformation = citySearchedArray.filter({ $0.name!.lowercased().contains(searchText.lowercased())})
-          } else {
-              self.cityInformation = self.cityOriginalArray
-          }
+    if !searchText.isEmpty {
+      citySearchedArray = self.cityOriginalArray
+      self.cityInformation = citySearchedArray.filter({ $0.name!.lowercased().contains(searchText.lowercased())})
+    } else {
+      self.cityInformation = self.cityOriginalArray
+    }
     completion()
   }
- 
+  
   func getAllCityDataFromLocalFile(completion: @escaping (Result<Bool, Error>) -> Void) {
     if let path = Bundle.main.path(forResource: "cityList", ofType: "json") {
       do {
@@ -47,29 +47,29 @@ class CityAddViewModel : NSObject {
     }
   }
   
-    //MARK: - Method for fetching city temperature data
-    func fetchCityDetailWeatherForPerticularCity(cityId : Int,completion: @escaping (Result<Bool, Error>) -> Void) {
-      apiClient.getAllCityDetailWeather(cityId : cityId) { (result) in
-        DispatchQueue.main.async {
-          switch(result) {
-          case .success(let result):
-            self.storeCityTemperatureInformationInDatabase(result: [result])
-            completion(.success(true))
-          case .failure(let error):
-            completion(.failure(error))
-          }
+  //MARK: - Method for fetching city temperature data
+  func fetchCityDetailWeatherForPerticularCity(cityId : Int,completion: @escaping (Result<Bool, Error>) -> Void) {
+    apiClient.getAllCityDetailWeather(cityId : cityId) { (result) in
+      DispatchQueue.main.async {
+        switch(result) {
+        case .success(let result):
+          self.storeCityTemperatureInformationInDatabase(result: [result])
+          completion(.success(true))
+        case .failure(let error):
+          completion(.failure(error))
         }
       }
     }
-    
-    func storeCityTemperatureInformationInDatabase(result : [CityWether])  {
-        for city in result {
-          CoreDataManager.sharedManager.insertCity(name: city.name ?? "", id: city.id ?? 0, temperature: city.main?.temp ?? 0.0)
-      }
+  }
+  
+  func storeCityTemperatureInformationInDatabase(result : [CityWether])  {
+    for city in result {
+      CoreDataManager.sharedManager.insertCity(name: city.name ?? "", id: city.id ?? 0, temperature: city.main?.temp ?? 0.0)
     }
+  }
   
   func getNumberOfTotalCities(section: Int) -> Int {
-      return self.cityInformation.count
+    return self.cityInformation.count
   }
   
   func getCityId(indexPath: IndexPath) -> Int {
@@ -77,7 +77,7 @@ class CityAddViewModel : NSObject {
   }
   
   func getCityName(indexPath: IndexPath) -> String {
-      return "\(self.cityInformation[indexPath.row].name ?? ""), \(self.cityInformation[indexPath.row].country ?? "")"
+    return "\(self.cityInformation[indexPath.row].name ?? ""), \(self.cityInformation[indexPath.row].country ?? "")"
   }
   
 }
