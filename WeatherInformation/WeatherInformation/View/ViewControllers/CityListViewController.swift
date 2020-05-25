@@ -70,7 +70,7 @@ extension CityListViewController : UITableViewDelegate , UITableViewDataSource {
       switch(result) {
       case .success:
         self.loadingView.isHidden = true
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
       case .failure(let error):
         self.loadingView.isHidden = true
         self.showAlert(message: error.localizedDescription, title: Constants.errorTitle, action: UIAlertAction(title: Constants.ok, style: .default, handler: nil))
