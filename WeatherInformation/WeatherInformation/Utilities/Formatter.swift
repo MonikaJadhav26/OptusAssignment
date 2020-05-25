@@ -45,6 +45,32 @@ public struct Formatters {
         return formatter
     }()
   }
+  
+  // MARK: Time
+  public struct Time {
+    public static func string(from value: Int) -> String {
+      let date = Date(timeIntervalSince1970: TimeInterval(value))
+      let hour = Calendar.current.component(.hour, from: date)
+      
+      switch hour {
+      case 6..<18 : return "TODAY"
+      default: return "TONIGHT"
+      }
+    }
+  }
+  
+  // MARK: CurrentTime
+  public struct CurrentTime {
+    public static func string() -> String {
+      let date = Date()
+      let hour = Calendar.current.component(.hour, from: date)
+      
+      switch hour {
+      case 6..<18 : return "TODAY"
+      default: return "TONIGHT"
+      }
+    }
+  }
 
     // MARK: Temperature
     public struct Temp {

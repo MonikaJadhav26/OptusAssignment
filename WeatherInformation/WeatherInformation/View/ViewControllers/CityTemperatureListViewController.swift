@@ -12,6 +12,8 @@ class CityTemperatureListViewController: BaseViewController {
   
   //MARK: - Outlets and Variables
   @IBOutlet weak var cityTemperatureTable: UITableView!
+  @IBOutlet weak var backgroundImageView: UIImageView!
+
   let cityTempViewModel = CityTemperatureListViewModel()
   //MARK: - View Lifecycle Methods
   override func viewDidLoad() {
@@ -30,6 +32,11 @@ class CityTemperatureListViewController: BaseViewController {
     self.navigationController?.isNavigationBarHidden = true
     self.cityTemperatureTable.register(UINib.init(nibName: Constants.cityTempCellIdentifier, bundle: nil), forCellReuseIdentifier: Constants.cityTempCellIdentifier)
     self.setUpLodingAndErrorView()
+    if Formatters.CurrentTime.string() == "TODAY" {
+      backgroundImageView.image = UIImage(named: "dayBackground")
+    } else {
+      backgroundImageView.image = UIImage(named: "nightBackground")
+    }
   }
   
   //MARK: - Call to get all data server
@@ -87,12 +94,10 @@ extension CityTemperatureListViewController : UITableViewDelegate , UITableViewD
   func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
     return 50
   }
-  
-  
+    
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return UITableView.automaticDimension
   }
-  
 }
 
 extension CityTemperatureListViewController : CityTempFooterViewDelegate {

@@ -28,18 +28,7 @@ class CityAddViewModel : NSObject {
           }
     completion()
   }
-  
-//  func getAllCityDataFromLocalFile() {
-//    let url = Bundle.main.url(forResource: "cityList", withExtension: "json")!
-//    let data = try! Data(contentsOf: url)
-//    let JSON = try! JSONSerialization.jsonObject(with: data, options: [])
-//    if let jsonArray = JSON as? [[String: Any]] {
-//      for item in jsonArray {
-//        cityOriginalArray.append(item)
-//      }
-//    }
-//  }
-  
+ 
   func getAllCityDataFromLocalFile(completion: @escaping (Result<Bool, Error>) -> Void) {
     if let path = Bundle.main.path(forResource: "cityList", ofType: "json") {
       do {

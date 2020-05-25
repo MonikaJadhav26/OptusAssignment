@@ -18,6 +18,8 @@ class CityDetailViewController: BaseViewController {
   @IBOutlet weak var cityMinMaxTempLabel: UILabel!
   @IBOutlet weak var cityDegreeTempLabel: UILabel!
   @IBOutlet weak var weatherIconImageView: UIImageView!
+  @IBOutlet weak var backgroundImageView: UIImageView!
+
   @IBOutlet weak var cityTemeratureViewBottomConstraintConstant: NSLayoutConstraint!
   var oldContentOffset = CGPoint.zero
   @IBOutlet var topViewTopConstraint: NSLayoutConstraint!
@@ -32,7 +34,6 @@ class CityDetailViewController: BaseViewController {
       self.cityDetailTable.register(UINib.init(nibName: Constants.temperatureDetailsCellIdentifier, bundle: nil), forCellReuseIdentifier: Constants.temperatureDetailsCellIdentifier)
      setUpLodingAndErrorView()
       getCityWeatherDetails()
-
     }
     
   @objc override func retryPressed() {
@@ -62,7 +63,7 @@ class CityDetailViewController: BaseViewController {
     cityMinMaxTempLabel.text = cityDetailViewModel.getCityMinMaxTemperatureValues()
     weatherIconImageView.downloaded(from: cityDetailViewModel.getCityIcon())
     weatherDeatils = cityDetailViewModel.getAllWeatherDetailsArray()
-
+    backgroundImageView.image = cityDetailViewModel.getImageForBackground()
     self.cityDetailTable.reloadData()
   }
 

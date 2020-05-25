@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class CityDetailViewModel : NSObject {
   
@@ -42,8 +43,17 @@ class CityDetailViewModel : NSObject {
     return Formatters.Temp.string(from: Float(self.city[0].main?.temp ?? 0.0))
   }
 
+  
+  func getImageForBackground() -> UIImage {
+    if Formatters.Time.string(from: Int(self.city[0].dt ?? 0)) == "TODAY"
+    {
+      return UIImage(named: "dayBackgroundForDetail")!
+    }
+    return UIImage(named: "nightBackgroundForDetail")!
+  }
+  
   func getWeekday() -> String {
-    return Formatters.Weekday.string(from: Int(self.city[0].dt ?? 0))
+    return "\(Formatters.Weekday.string(from: Int(self.city[0].dt ?? 0)))  \(Formatters.Time.string(from: Int(self.city[0].dt ?? 0)))"
   }
  
   func getCityIcon() -> String {
@@ -69,7 +79,7 @@ class CityDetailViewModel : NSObject {
     
     let windString = "WNW \(String(describing: city[0].wind!.speed)) kph"
    
-    weatherDeatils.append(["Today": todayForecastDetails])
+    weatherDeatils.append(["SUMMARY": todayForecastDetails])
     weatherDeatils.append(["SUNRIZE": Formatters.Sunrise.string(from: city[0].sys!.sunrise)])
     weatherDeatils.append(["SUNSET": Formatters.Sunrise.string(from: city[0].sys!.sunset)])
     weatherDeatils.append(["HUMIDITY": Formatters.Humidity.string(from: Int(self.city[0].main?.humidity ?? 0))])

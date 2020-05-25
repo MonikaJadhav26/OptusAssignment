@@ -18,9 +18,9 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bW-wb-O59">
-                        <rect key="frame" x="240" y="4" width="70" height="36"/>
+                        <rect key="frame" x="260" y="4" width="40" height="36"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="70" id="wWd-0K-ZcX"/>
+                            <constraint firstAttribute="width" constant="40" id="wWd-0K-ZcX"/>
                         </constraints>
                         <state key="normal" image="addIcon">
                             <color key="titleColor" red="0.33333334329999997" green="0.33333334329999997" blue="0.33333334329999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -29,7 +29,7 @@
                             <action selector="addButtonClickedAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="0EB-69-Dl3"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kVO-Cq-Yqf">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kVO-Cq-Yqf">
                         <rect key="frame" x="2" y="4" width="50" height="36"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="QBh-aj-ke3"/>
@@ -39,8 +39,8 @@
                             <action selector="degreeCelciusButtonClickedAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kVG-U7-z9w"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z2o-q7-beA">
-                        <rect key="frame" x="66" y="4" width="50" height="36"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z2o-q7-beA">
+                        <rect key="frame" x="62" y="4" width="50" height="36"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="Saq-4f-Pm5"/>
                         </constraints>
@@ -65,21 +65,24 @@
                     <constraint firstItem="c9g-7b-JiE" firstAttribute="bottom" secondItem="8bW-wb-O59" secondAttribute="bottom" id="1Ul-lQ-2d2"/>
                     <constraint firstItem="kVO-Cq-Yqf" firstAttribute="top" secondItem="8bW-wb-O59" secondAttribute="top" id="FAR-Eb-RuI"/>
                     <constraint firstItem="Z2o-q7-beA" firstAttribute="top" secondItem="8bW-wb-O59" secondAttribute="top" id="Mls-GS-Mez"/>
-                    <constraint firstAttribute="trailing" secondItem="8bW-wb-O59" secondAttribute="trailing" constant="10" id="N7Y-fr-54b"/>
+                    <constraint firstAttribute="trailing" secondItem="8bW-wb-O59" secondAttribute="trailing" constant="20" id="N7Y-fr-54b"/>
                     <constraint firstItem="kVO-Cq-Yqf" firstAttribute="bottom" secondItem="8bW-wb-O59" secondAttribute="bottom" id="QEA-Bp-bVU"/>
                     <constraint firstItem="c9g-7b-JiE" firstAttribute="leading" secondItem="kVO-Cq-Yqf" secondAttribute="trailing" constant="4" id="StO-Dj-Ucw"/>
                     <constraint firstItem="kVO-Cq-Yqf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="2" id="VSC-Fd-jx8"/>
                     <constraint firstItem="Z2o-q7-beA" firstAttribute="bottom" secondItem="8bW-wb-O59" secondAttribute="bottom" id="afh-aE-x9C"/>
-                    <constraint firstItem="Z2o-q7-beA" firstAttribute="leading" secondItem="c9g-7b-JiE" secondAttribute="trailing" constant="4" id="z7w-uZ-xMz"/>
+                    <constraint firstItem="Z2o-q7-beA" firstAttribute="leading" secondItem="c9g-7b-JiE" secondAttribute="trailing" id="z7w-uZ-xMz"/>
                     <constraint firstAttribute="bottom" secondItem="8bW-wb-O59" secondAttribute="bottom" constant="4" id="zj8-0V-gFh"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <point key="canvasLocation" x="139" y="114"/>
+            <connections>
+                <outlet property="addButton" destination="8bW-wb-O59" id="SHo-en-pot"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="113.83928571428571"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="addIcon" width="35" height="35"/>
+        <image name="addIcon" width="36" height="36.5"/>
     </resources>
 </document>

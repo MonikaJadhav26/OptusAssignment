@@ -14,40 +14,49 @@
                 <viewController storyboardIdentifier="CityTemperatureListViewController" id="BYZ-38-t0r" customClass="CityTemperatureListViewController" customModule="WeatherInformation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5Rv-Cd-TP8">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zZA-XY-gj9">
+                                <rect key="frame" x="0.0" y="-1" width="414" height="898"/>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AdP-co-ryE">
+                                <rect key="frame" x="0.0" y="94" width="414" height="768"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CityTemperatureTableViewCell" id="0H5-VJ-r6l" customClass="CityTemperatureTableViewCell" customModule="WeatherInformation" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CityTemperatureTableViewCell" id="5Yv-dV-CKv" customClass="CityTemperatureTableViewCell" customModule="WeatherInformation" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0H5-VJ-r6l" id="2At-Ft-fsK">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5Yv-dV-CKv" id="5ps-GW-Nmm">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="U4Q-tt-B4J"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="lgJ-sP-h1v"/>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="huZ-AX-dzU"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="f85-ci-b9u"/>
                                 </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5Rv-Cd-TP8" secondAttribute="trailing" id="2tH-jF-3ZD"/>
-                            <constraint firstItem="5Rv-Cd-TP8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="WfT-wS-Igb"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="5Rv-Cd-TP8" secondAttribute="bottom" id="df6-L1-0Zk"/>
-                            <constraint firstItem="5Rv-Cd-TP8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="mJU-Bb-OtN"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="AdP-co-ryE" secondAttribute="bottom" id="32Z-Pg-9BI"/>
+                            <constraint firstItem="zZA-XY-gj9" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="QUu-74-aaa"/>
+                            <constraint firstItem="AdP-co-ryE" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="YLf-w4-8Cz"/>
+                            <constraint firstAttribute="bottom" secondItem="zZA-XY-gj9" secondAttribute="bottom" constant="-1" id="aFE-Fj-Sbf"/>
+                            <constraint firstItem="zZA-XY-gj9" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="-1" id="bHm-cE-MUI"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AdP-co-ryE" secondAttribute="trailing" id="e99-nP-6Ih"/>
+                            <constraint firstItem="zZA-XY-gj9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="iOR-5f-ar5"/>
+                            <constraint firstItem="AdP-co-ryE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="zG6-zE-5YV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="PfC-Uk-y0n"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="cityTemperatureTable" destination="5Rv-Cd-TP8" id="mPJ-nz-4Lo"/>
+                        <outlet property="backgroundImageView" destination="zZA-XY-gj9" id="IA3-zi-9UQ"/>
+                        <outlet property="cityTemperatureTable" destination="AdP-co-ryE" id="J4t-OR-tOh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -171,7 +180,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="HYJ-7t-8B8"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="27"/>
+                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="27"/>
                                 <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -203,15 +212,15 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="m2I-9f-eAs"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="NotoSansOriya-Bold" family="Noto Sans Oriya" pointSize="82"/>
+                                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="82"/>
                                         <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saturday" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iEo-Va-1Vp">
-                                        <rect key="frame" x="8" y="105" width="100" height="22"/>
+                                        <rect key="frame" x="8" y="105" width="180" height="22"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="epG-kd-ZFl"/>
+                                            <constraint firstAttribute="width" constant="180" id="epG-kd-ZFl"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="15"/>
                                         <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -296,6 +305,7 @@
                         <viewLayoutGuide key="safeArea" id="Y9O-eT-FiX"/>
                     </view>
                     <connections>
+                        <outlet property="backgroundImageView" destination="odD-Xf-6vW" id="JZW-LB-1p5"/>
                         <outlet property="cityDayNameLabel" destination="iEo-Va-1Vp" id="CLg-L9-HXB"/>
                         <outlet property="cityDegreeTempLabel" destination="hya-rg-YIc" id="Ihk-FB-0ZB"/>
                         <outlet property="cityDetailTable" destination="Ium-9b-7Bo" id="fY2-9d-uqf"/>
