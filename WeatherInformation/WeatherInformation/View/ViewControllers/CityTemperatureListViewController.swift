@@ -15,6 +15,7 @@ class CityTemperatureListViewController: BaseViewController {
   @IBOutlet weak var backgroundImageView: UIImageView!
 
   let cityTempViewModel = CityTemperatureListViewModel()
+  var timer: Timer?
   //MARK: - View Lifecycle Methods
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -24,14 +25,36 @@ class CityTemperatureListViewController: BaseViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(true)
-    getCityTemperatureListFromURL()
+    self.loadingView.isHidden = true
+    if cityTempViewModel.fetchAllCityTemperatureRecordsFromDB() {
+      self.cityTemperatureTable.reloadData()
+    }else {
+       getCityTemperatureListFromURL()
+    }
+  }
+
+  override func viewDidDisappear(_ animated: Bool) {
+      super.viewDidDisappear(animated)
+      stopTimer()
+  }
+  
+  func stopTimer() {
+      if timer != nil {
+          timer?.invalidate()
+          timer = nil
+      }
   }
   
   //MARK: - Method for UI setup
   func setUpUI() {
     self.navigationController?.isNavigationBarHidden = true
     self.cityTemperatureTable.register(UINib.init(nibName: Constants.cityTempCellIdentifier, bundle: nil), forCellReuseIdentifier: Constants.cityTempCellIdentifier)
-    self.setUpLodingAndErrorView()
+    self.setUpLodingView()
+    
+    timer =  Timer.scheduledTimer(withTimeInterval: 1000.0, repeats: true) { (timer) in
+      self.getCityTemperatureListFromURL()
+    }
+    
     if Formatters.CurrentTime.string() == "TODAY" {
       backgroundImageView.image = UIImage(named: "dayBackground")
     } else {
@@ -39,14 +62,15 @@ class CityTemperatureListViewController: BaseViewController {
     }
   }
   
+
+  
   //MARK: - Call to get all data server
-  func getCityTemperatureListFromURL() {
+ @objc func getCityTemperatureListFromURL() {
     loadingView.isHidden = false
     cityTempViewModel.fetchCityTemperatureData { result in
       switch(result) {
       case .success:
         self.loadingView.isHidden = true
-       // self.cityTempViewModel.fetchAllCityTemperatureRecordsFromDB()
         self.cityTemperatureTable.reloadData()
       case .failure(let error):
         self.loadingView.isHidden = true
@@ -56,6 +80,7 @@ class CityTemperatureListViewController: BaseViewController {
   }
   
 }
+
 
 //MARK: - UITableview delegate and datasource methods
 extension CityTemperatureListViewController : UITableViewDelegate , UITableViewDataSource {
@@ -113,6 +138,7 @@ extension CityTemperatureListViewController : CityTempFooterViewDelegate {
   func addButtonTapped() {
     let cityListViewController = UIStoryboard.init(name: Constants.storyboard, bundle: Bundle.main).instantiateViewController(withIdentifier: "CityListViewController") as? CityListViewController
     cityListViewController?.modalPresentationStyle = .fullScreen
+    self.loadingView.isHidden = false
     self.present(cityListViewController!, animated: true, completion: nil)
   }
   

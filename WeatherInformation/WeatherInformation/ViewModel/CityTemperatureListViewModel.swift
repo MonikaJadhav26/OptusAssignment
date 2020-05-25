@@ -21,9 +21,9 @@ class CityTemperatureListViewModel : NSObject {
   //MARK: - Method for fetching all city temperature data
   func fetchCityTemperatureData(completion: @escaping (Result<Bool, Error>) -> Void) {
     
-    if fetchAllCityTemperatureRecordsFromDB() {
-      completion(.success(true))
-    }else {
+//    if fetchAllCityTemperatureRecordsFromDB() {
+//      completion(.success(true))
+//    }else {
         apiClient.getInitialCitiesTemperatureList { (result) in
           DispatchQueue.main.async {
             switch(result) {
@@ -35,7 +35,7 @@ class CityTemperatureListViewModel : NSObject {
             }
           }
         }
-    }
+    //}
   }
   
   func storeCityTemperatureInformationInDatabase(result : [List])  {

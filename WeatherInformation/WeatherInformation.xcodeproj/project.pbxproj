@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		D813FB26247AD1DA00F2F704 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D813FB24247AD1DA00F2F704 /* LoadingView.swift */; };
 		D813FB27247AD1DA00F2F704 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D813FB25247AD1DA00F2F704 /* LoadingView.xib */; };
-		D813FB2A247AD2E200F2F704 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D813FB28247AD2E200F2F704 /* ErrorView.swift */; };
-		D813FB2B247AD2E200F2F704 /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D813FB29247AD2E200F2F704 /* ErrorView.xib */; };
 		D813FB2D247AD32000F2F704 /* LayoutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D813FB2C247AD32000F2F704 /* LayoutHelper.swift */; };
 		D813FB34247AF0DC00F2F704 /* InitialCities+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D813FB32247AF0DC00F2F704 /* InitialCities+CoreDataClass.swift */; };
 		D813FB35247AF0DC00F2F704 /* InitialCities+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D813FB33247AF0DC00F2F704 /* InitialCities+CoreDataProperties.swift */; };
@@ -67,8 +65,6 @@
 /* Begin PBXFileReference section */
 		D813FB24247AD1DA00F2F704 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		D813FB25247AD1DA00F2F704 /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
-		D813FB28247AD2E200F2F704 /* ErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
-		D813FB29247AD2E200F2F704 /* ErrorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ErrorView.xib; sourceTree = "<group>"; };
 		D813FB2C247AD32000F2F704 /* LayoutHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutHelper.swift; sourceTree = "<group>"; };
 		D813FB32247AF0DC00F2F704 /* InitialCities+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "InitialCities+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D813FB33247AF0DC00F2F704 /* InitialCities+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "InitialCities+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -139,8 +135,6 @@
 		D813FB23247AD19A00F2F704 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
-				D813FB28247AD2E200F2F704 /* ErrorView.swift */,
-				D813FB29247AD2E200F2F704 /* ErrorView.xib */,
 				D813FB24247AD1DA00F2F704 /* LoadingView.swift */,
 				D813FB25247AD1DA00F2F704 /* LoadingView.xib */,
 			);
@@ -418,7 +412,6 @@
 				D813FB27247AD1DA00F2F704 /* LoadingView.xib in Resources */,
 				D829D2812476B978008875BF /* CityTempFooterViewCell.xib in Resources */,
 				D8E47CC524799B3A00DE71EA /* TemperatureDetailsCell.xib in Resources */,
-				D813FB2B247AD2E200F2F704 /* ErrorView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,7 +446,6 @@
 				D8E7578B247A4FF1006091F2 /* BaseViewController.swift in Sources */,
 				D829D26E2476AF98008875BF /* Constants.swift in Sources */,
 				D813FB34247AF0DC00F2F704 /* InitialCities+CoreDataClass.swift in Sources */,
-				D813FB2A247AD2E200F2F704 /* ErrorView.swift in Sources */,
 				D829D2882476FC61008875BF /* ApiClient.swift in Sources */,
 				D8E47CC424799B3A00DE71EA /* TemperatureDetailsCell.swift in Sources */,
 				D829D2802476B978008875BF /* CityTempFooterViewCell.swift in Sources */,

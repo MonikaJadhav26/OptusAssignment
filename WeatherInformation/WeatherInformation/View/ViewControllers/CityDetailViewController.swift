@@ -32,7 +32,7 @@ class CityDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
       self.cityDetailTable.register(UINib.init(nibName: Constants.temperatureDetailsCellIdentifier, bundle: nil), forCellReuseIdentifier: Constants.temperatureDetailsCellIdentifier)
-     setUpLodingAndErrorView()
+     setUpLodingView()
       getCityWeatherDetails()
     }
     

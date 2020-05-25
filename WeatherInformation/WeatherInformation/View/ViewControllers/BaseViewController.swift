@@ -13,7 +13,6 @@ class BaseViewController: UIViewController {
   //MARK: - Outlets and Variables
   var activityIndicator = UIActivityIndicatorView()
   var loadingView: LoadingView! = nil
-  var errorView: ErrorView! = nil
   
   //MARK: - View Lifecycle Methods
   override func viewDidLoad() {
@@ -22,11 +21,10 @@ class BaseViewController: UIViewController {
     // Do any additional setup after loading the view.
   }
   
-  func setUpLodingAndErrorView() {
-         let aux = attachAuxilliaryViews()
-         loadingView = aux.loading
-         errorView = aux.error
-         errorView.addRetryHandler(self, action: #selector(retryPressed))
+  func setUpLodingView() {
+        let aux = attachAuxilliaryViews()
+        loadingView = aux.self
+
   }
   
   @objc func retryPressed() {
@@ -82,8 +80,8 @@ class BaseViewController: UIViewController {
 // AuxilliaryViewAttachment
 extension UIViewController {
 
-    /// Create, attach, layout and auxillary views, LoadingView and ErrorView
-    public func attachAuxilliaryViews() -> (loading: LoadingView, error: ErrorView) {
+    /// Create, attach, layout and auxillary views, LoadingView
+  public func attachAuxilliaryViews() -> (LoadingView) {
         guard let nc = navigationController else {
             fatalError("UIViewController must belong to a UINavigationController")
         }
@@ -91,16 +89,9 @@ extension UIViewController {
         // Loading View
         let lv = LoadingView.create()
         nc.view.addSubview(lv)
-      nc.view.bringSubviewToFront(lv)
+        nc.view.bringSubviewToFront(lv)
         LayoutHelper.fillAndCentre(lv, margins: margins)
-        // Error View
-        let ev = ErrorView.create()
-        nc.view.addSubview(ev)
-      nc.view.bringSubviewToFront(ev)
-        LayoutHelper.fillAndCentre(ev, margins: margins)
-        // Hide both by default
-        ev.isHidden = true
         lv.isHidden = true
-        return (loading: lv, error: ev)
+        return  lv
     }
 }

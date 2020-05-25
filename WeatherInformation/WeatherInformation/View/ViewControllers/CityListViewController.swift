@@ -21,7 +21,7 @@ class CityListViewController: BaseViewController {
    //MARK: - View Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-    //  self.setUpLodingAndErrorView()
+   //  self.setUpLodingView()
       getAllCitiesList()
 
     }
