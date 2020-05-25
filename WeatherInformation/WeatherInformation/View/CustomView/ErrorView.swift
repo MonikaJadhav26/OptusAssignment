@@ -1,9 +1,9 @@
 //
 //  ErrorView.swift
-//  OptusWeather
+//  WeatherInformation
 //
-//  Created by Vijay Santhanam on 27/05/2017.
-//  Copyright © 2017 Vijay Santhanam. All rights reserved.
+//  Created by Monika Jadhav on 21/05/20.
+//  Copyright © 2020 Monika Jadhav. All rights reserved.
 //
 
 import UIKit

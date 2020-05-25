@@ -1,5 +1,5 @@
 //
-//  CityTemperatureListViewController.swift
+//  LoadingView.swift
 //  WeatherInformation
 //
 //  Created by Monika Jadhav on 21/05/20.

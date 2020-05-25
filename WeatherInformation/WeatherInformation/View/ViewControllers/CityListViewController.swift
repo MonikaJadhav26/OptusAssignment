@@ -61,7 +61,17 @@ extension CityListViewController : UITableViewDelegate , UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
-    self.dismiss(animated: true, completion: nil)
+    let cityID = cityAddViewModel.getCityId(indexPath: indexPath)
+    cityAddViewModel.fetchCityDetailWeatherForPerticularCity(cityId: cityID) { result in
+      switch(result) {
+      case .success:
+       // self.loadingView.isHidden = true
+        self.dismiss(animated: true, completion: nil)
+      case .failure(let error):
+       // self.loadingView.isHidden = true
+        self.showAlert(message: error.localizedDescription, title: Constants.errorTitle, action: UIAlertAction(title: Constants.ok, style: .default, handler: nil))
+      }
+    }
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

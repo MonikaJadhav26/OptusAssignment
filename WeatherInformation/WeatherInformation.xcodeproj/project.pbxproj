@@ -37,10 +37,10 @@
 		D829D2962477B93B008875BF /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D829D2952477B93B008875BF /* Formatter.swift */; };
 		D829D2982477D72C008875BF /* CityAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D829D2972477D72C008875BF /* CityAddViewModel.swift */; };
 		D829D29A2477DEA8008875BF /* cityList.json in Resources */ = {isa = PBXBuildFile; fileRef = D829D2992477DEA8008875BF /* cityList.json */; };
-		D873822324791A6200018391 /* current.city.list.min.json in Resources */ = {isa = PBXBuildFile; fileRef = D873822224791A6200018391 /* current.city.list.min.json */; };
 		D8B08D612477F4EA00BFF4F9 /* CityInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B08D602477F4EA00BFF4F9 /* CityInformation.swift */; };
 		D8B08D6324780D5500BFF4F9 /* CityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B08D6224780D5500BFF4F9 /* CityDetailViewController.swift */; };
 		D8B08D6524780D8100BFF4F9 /* CityDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B08D6424780D8100BFF4F9 /* CityDetailViewModel.swift */; };
+		D8CC3CBA247BA4D500E5FEB6 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CC3CB9247BA4D500E5FEB6 /* CoreDataManager.swift */; };
 		D8E47CC124798FB500DE71EA /* UIImageView+download.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E47CC024798FB500DE71EA /* UIImageView+download.swift */; };
 		D8E47CC424799B3A00DE71EA /* TemperatureDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E47CC224799B3A00DE71EA /* TemperatureDetailsCell.swift */; };
 		D8E47CC524799B3A00DE71EA /* TemperatureDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8E47CC324799B3A00DE71EA /* TemperatureDetailsCell.xib */; };
@@ -101,10 +101,10 @@
 		D829D2952477B93B008875BF /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		D829D2972477D72C008875BF /* CityAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityAddViewModel.swift; sourceTree = "<group>"; };
 		D829D2992477DEA8008875BF /* cityList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cityList.json; sourceTree = "<group>"; };
-		D873822224791A6200018391 /* current.city.list.min.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = current.city.list.min.json; sourceTree = "<group>"; };
 		D8B08D602477F4EA00BFF4F9 /* CityInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityInformation.swift; sourceTree = "<group>"; };
 		D8B08D6224780D5500BFF4F9 /* CityDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDetailViewController.swift; sourceTree = "<group>"; };
 		D8B08D6424780D8100BFF4F9 /* CityDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDetailViewModel.swift; sourceTree = "<group>"; };
+		D8CC3CB9247BA4D500E5FEB6 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		D8E47CC024798FB500DE71EA /* UIImageView+download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImageView+download.swift"; path = "WeatherInformation/Utilities/UIImageView+download.swift"; sourceTree = SOURCE_ROOT; };
 		D8E47CC224799B3A00DE71EA /* TemperatureDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureDetailsCell.swift; sourceTree = "<group>"; };
 		D8E47CC324799B3A00DE71EA /* TemperatureDetailsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TemperatureDetailsCell.xib; sourceTree = "<group>"; };
@@ -255,7 +255,6 @@
 				D829D26D2476AF98008875BF /* Constants.swift */,
 				D829D2952477B93B008875BF /* Formatter.swift */,
 				D829D2992477DEA8008875BF /* cityList.json */,
-				D873822224791A6200018391 /* current.city.list.min.json */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -302,6 +301,7 @@
 				D829D2922477AC59008875BF /* City+CoreDataProperties.swift */,
 				D813FB32247AF0DC00F2F704 /* InitialCities+CoreDataClass.swift */,
 				D813FB33247AF0DC00F2F704 /* InitialCities+CoreDataProperties.swift */,
+				D8CC3CB9247BA4D500E5FEB6 /* CoreDataManager.swift */,
 			);
 			path = LocalStorageDB;
 			sourceTree = "<group>";
@@ -415,7 +415,6 @@
 				D829D29A2477DEA8008875BF /* cityList.json in Resources */,
 				D829D27A2476B24C008875BF /* CityTemperatureTableViewCell.xib in Resources */,
 				D829D2392476A3F9008875BF /* Assets.xcassets in Resources */,
-				D873822324791A6200018391 /* current.city.list.min.json in Resources */,
 				D813FB27247AD1DA00F2F704 /* LoadingView.xib in Resources */,
 				D829D2812476B978008875BF /* CityTempFooterViewCell.xib in Resources */,
 				D8E47CC524799B3A00DE71EA /* TemperatureDetailsCell.xib in Resources */,
@@ -450,6 +449,7 @@
 				D813FB26247AD1DA00F2F704 /* LoadingView.swift in Sources */,
 				D829D2942477AC59008875BF /* City+CoreDataProperties.swift in Sources */,
 				D829D2612476A9A0008875BF /* AppDelegate.swift in Sources */,
+				D8CC3CBA247BA4D500E5FEB6 /* CoreDataManager.swift in Sources */,
 				D8E7578B247A4FF1006091F2 /* BaseViewController.swift in Sources */,
 				D829D26E2476AF98008875BF /* Constants.swift in Sources */,
 				D813FB34247AF0DC00F2F704 /* InitialCities+CoreDataClass.swift in Sources */,

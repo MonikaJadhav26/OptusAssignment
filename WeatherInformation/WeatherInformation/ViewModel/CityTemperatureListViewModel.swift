@@ -21,7 +21,7 @@ class CityTemperatureListViewModel : NSObject {
   //MARK: - Method for fetching all city temperature data
   func fetchCityTemperatureData(completion: @escaping (Result<Bool, Error>) -> Void) {
     
-    if checkInitialCitiesAreLoaded() {
+    if fetchAllCityTemperatureRecordsFromDB() {
       completion(.success(true))
     }else {
         apiClient.getInitialCitiesTemperatureList { (result) in
@@ -38,98 +38,21 @@ class CityTemperatureListViewModel : NSObject {
     }
   }
   
-//  //MARK: - Method for fetching city temperature data
-//  func fetchCityDetailWeatherForPerticularCity(cityId : Int,completion: @escaping (Result<Bool, Error>) -> Void) {
-//    apiClient.getAllCityDetailWeather(cityId : cityId) { (result) in
-//      DispatchQueue.main.async {
-//        switch(result) {
-//        case .success(let result):
-//          self.storeCityTemperatureInformationInDatabase(result: [result])
-//          completion(.success(true))
-//        case .failure(let error):
-//          completion(.failure(error))
-//        }
-//      }
-//    }
-//  }
-  
   func storeCityTemperatureInformationInDatabase(result : [List])  {
-    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
-    
-    print(result.count)
     
     for city in result {
-    // Create City
-    let entityCity = NSEntityDescription.entity(forEntityName: "City", in: appDelegate.managedObjectContext)
-    let newCity = NSManagedObject(entity: entityCity!, insertInto: appDelegate.managedObjectContext)
-    
-    // Populate City
-      newCity.setValue(city.name, forKey: "name")
-      newCity.setValue(city.main.temp, forKey: "temperature")
-      newCity.setValue(city.id, forKey: "id")
-    
-    do {
-      try newCity.managedObjectContext?.save()
-    } catch {
-      let saveError = error as NSError
-      print(saveError)
+      CoreDataManager.sharedManager.insertCity(name: city.name ?? "", id: city.id ?? 0, temperature: city.main?.temp ?? 0.0)
     }
-  }
-    fetchAllCityTemperatureRecordsFromDB()
+    
   }
   
-  func checkInitialCitiesAreLoaded() -> Bool {
-      guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return false}
-      
-      // Initialize Fetch Request
-      let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
-      
-      // Create Entity Description
-      let entityDescription = NSEntityDescription.entity(forEntityName: "InitialCities", in: appDelegate.managedObjectContext)
-      
-      // Configure Fetch Request
-      fetchRequest.entity = entityDescription
-      
-      do {
-        let result = try appDelegate.managedObjectContext.fetch(fetchRequest)
-        if (result.count > 0) {
-          return true
-        }
-        
-      } catch {
-        let fetchError = error as NSError
-        print(fetchError)
-      }
-      
-      return false
+  func fetchAllCityTemperatureRecordsFromDB() -> Bool {
+    cityTempList.removeAll()
+    cityTempList = CoreDataManager.sharedManager.fetchAllCities()
+    if cityTempList.count > 0 {
+      return true
     }
-  
-  
-  func fetchAllCityTemperatureRecordsFromDB() {
-    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
-    
-    // Initialize Fetch Request
-    let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
-    
-    // Create Entity Description
-    let entityDescription = NSEntityDescription.entity(forEntityName: "City", in: appDelegate.managedObjectContext)
-    
-    // Configure Fetch Request
-    fetchRequest.entity = entityDescription
-    
-    do {
-      let result = try appDelegate.managedObjectContext.fetch(fetchRequest)
-      if (result.count > 0) {
-        for city in result {
-          cityTempList.append((city as! NSManagedObject) as! City)
-        }
-      }
-      
-    } catch {
-      let fetchError = error as NSError
-      print(fetchError)
-    }
-    
+    return false
   }
   
   func getNumberOfTotalCities(section: Int) -> Int {
@@ -151,3 +74,5 @@ class CityTemperatureListViewModel : NSObject {
     }
   
 }
+
+

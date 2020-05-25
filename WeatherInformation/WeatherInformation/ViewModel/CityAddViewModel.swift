@@ -6,7 +6,9 @@
 //  Copyright © 2020 Monika Jadhav. All rights reserved.
 //
 
+import UIKit
 import Foundation
+import CoreData
 
 class CityAddViewModel : NSObject {
   
@@ -55,6 +57,27 @@ class CityAddViewModel : NSObject {
       print("Invalid filename/path.")
     }
   }
+  
+    //MARK: - Method for fetching city temperature data
+    func fetchCityDetailWeatherForPerticularCity(cityId : Int,completion: @escaping (Result<Bool, Error>) -> Void) {
+      apiClient.getAllCityDetailWeather(cityId : cityId) { (result) in
+        DispatchQueue.main.async {
+          switch(result) {
+          case .success(let result):
+            self.storeCityTemperatureInformationInDatabase(result: [result])
+            completion(.success(true))
+          case .failure(let error):
+            completion(.failure(error))
+          }
+        }
+      }
+    }
+    
+    func storeCityTemperatureInformationInDatabase(result : [CityWether])  {
+        for city in result {
+          CoreDataManager.sharedManager.insertCity(name: city.name ?? "", id: city.id ?? 0, temperature: city.main?.temp ?? 0.0)
+      }
+    }
   
   func getNumberOfTotalCities(section: Int) -> Int {
       return self.cityInformation.count

@@ -17,9 +17,12 @@ class CityTemperatureListViewController: BaseViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setUpUI()
-    getCityTemperatureListFromURL()
-    // self.cityTempViewModel.fetchAllCityTemperatureRecordsFromDB()
     
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(true)
+    getCityTemperatureListFromURL()
   }
   
   //MARK: - Method for UI setup
@@ -36,6 +39,7 @@ class CityTemperatureListViewController: BaseViewController {
       switch(result) {
       case .success:
         self.loadingView.isHidden = true
+       // self.cityTempViewModel.fetchAllCityTemperatureRecordsFromDB()
         self.cityTemperatureTable.reloadData()
       case .failure(let error):
         self.loadingView.isHidden = true
@@ -103,6 +107,7 @@ extension CityTemperatureListViewController : CityTempFooterViewDelegate {
   
   func addButtonTapped() {
     let cityListViewController = UIStoryboard.init(name: Constants.storyboard, bundle: Bundle.main).instantiateViewController(withIdentifier: "CityListViewController") as? CityListViewController
+    cityListViewController?.modalPresentationStyle = .fullScreen
     self.present(cityListViewController!, animated: true, completion: nil)
   }
   

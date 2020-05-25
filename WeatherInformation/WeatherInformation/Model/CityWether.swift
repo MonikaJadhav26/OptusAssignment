@@ -21,15 +21,15 @@ struct InitialTemperature: Codable {
 
 // MARK: - List
 struct List: Codable {
-    let coord: Coord
-    let sys: Sys2
-    let weather: [Weather]
-    let main: Main
-    let visibility: Int
-    let wind: Wind
-    let clouds: Clouds
-    let dt, id: Int
-    let name: String
+    let coord: Coord?
+    let sys: Sys2?
+    let weather: [Weather]?
+    let main: Main?
+    let visibility: Int?
+    let wind: Wind?
+    let clouds: Clouds?
+    let dt, id: Int?
+    let name: String?
 }
 
 
