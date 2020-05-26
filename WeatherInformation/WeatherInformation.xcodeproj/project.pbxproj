@@ -44,6 +44,9 @@
 		D8ED7FAE247C37EF00E08A37 /* CityTemperatureListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8ED7FAD247C37EF00E08A37 /* CityTemperatureListViewModelTests.swift */; };
 		D8ED7FB0247C397100E08A37 /* CityAddViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8ED7FAF247C397100E08A37 /* CityAddViewModelTests.swift */; };
 		D8ED7FB2247C398400E08A37 /* CityDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8ED7FB1247C398400E08A37 /* CityDetailViewModelTests.swift */; };
+		D8ED7FB5247CF1F900E08A37 /* CityDetailWeatherInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8ED7FB3247CF1F900E08A37 /* CityDetailWeatherInfoCell.swift */; };
+		D8ED7FB6247CF1F900E08A37 /* CityDetailWeatherInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8ED7FB4247CF1F900E08A37 /* CityDetailWeatherInfoCell.xib */; };
+		D8ED7FB8247D2D0300E08A37 /* currentlist.json in Resources */ = {isa = PBXBuildFile; fileRef = D8ED7FB7247D2D0300E08A37 /* currentlist.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +110,9 @@
 		D8ED7FAD247C37EF00E08A37 /* CityTemperatureListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTemperatureListViewModelTests.swift; sourceTree = "<group>"; };
 		D8ED7FAF247C397100E08A37 /* CityAddViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityAddViewModelTests.swift; sourceTree = "<group>"; };
 		D8ED7FB1247C398400E08A37 /* CityDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDetailViewModelTests.swift; sourceTree = "<group>"; };
+		D8ED7FB3247CF1F900E08A37 /* CityDetailWeatherInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDetailWeatherInfoCell.swift; sourceTree = "<group>"; };
+		D8ED7FB4247CF1F900E08A37 /* CityDetailWeatherInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityDetailWeatherInfoCell.xib; sourceTree = "<group>"; };
+		D8ED7FB7247D2D0300E08A37 /* currentlist.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = currentlist.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,6 +259,7 @@
 				D813FB2C247AD32000F2F704 /* LayoutHelper.swift */,
 				D829D26D2476AF98008875BF /* Constants.swift */,
 				D829D2952477B93B008875BF /* Formatter.swift */,
+				D8ED7FB7247D2D0300E08A37 /* currentlist.json */,
 				D829D2992477DEA8008875BF /* cityList.json */,
 			);
 			path = Utilities;
@@ -267,6 +274,8 @@
 				D829D27F2476B978008875BF /* CityTempFooterViewCell.xib */,
 				D8E47CC224799B3A00DE71EA /* TemperatureDetailsCell.swift */,
 				D8E47CC324799B3A00DE71EA /* TemperatureDetailsCell.xib */,
+				D8ED7FB3247CF1F900E08A37 /* CityDetailWeatherInfoCell.swift */,
+				D8ED7FB4247CF1F900E08A37 /* CityDetailWeatherInfoCell.xib */,
 			);
 			path = UITableviewCell;
 			sourceTree = "<group>";
@@ -409,8 +418,10 @@
 			files = (
 				D829D2692476AE05008875BF /* Main.storyboard in Resources */,
 				D829D2682476AE05008875BF /* LaunchScreen.storyboard in Resources */,
+				D8ED7FB8247D2D0300E08A37 /* currentlist.json in Resources */,
 				D829D29A2477DEA8008875BF /* cityList.json in Resources */,
 				D829D27A2476B24C008875BF /* CityTemperatureTableViewCell.xib in Resources */,
+				D8ED7FB6247CF1F900E08A37 /* CityDetailWeatherInfoCell.xib in Resources */,
 				D829D2392476A3F9008875BF /* Assets.xcassets in Resources */,
 				D813FB27247AD1DA00F2F704 /* LoadingView.xib in Resources */,
 				D829D2812476B978008875BF /* CityTempFooterViewCell.xib in Resources */,
@@ -456,6 +467,7 @@
 				D829D28C2476FEB6008875BF /* CityTemperatureListViewModel.swift in Sources */,
 				D829D2962477B93B008875BF /* Formatter.swift in Sources */,
 				D829D2832476BD85008875BF /* CityListViewController.swift in Sources */,
+				D8ED7FB5247CF1F900E08A37 /* CityDetailWeatherInfoCell.swift in Sources */,
 				D8B08D6524780D8100BFF4F9 /* CityDetailViewModel.swift in Sources */,
 				D829D2982477D72C008875BF /* CityAddViewModel.swift in Sources */,
 				D813FB2D247AD32000F2F704 /* LayoutHelper.swift in Sources */,

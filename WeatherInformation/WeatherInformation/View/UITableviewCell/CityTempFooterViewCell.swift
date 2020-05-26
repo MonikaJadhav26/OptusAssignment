@@ -28,9 +28,7 @@ class CityTempFooterViewCell: UITableViewCell {
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    addButton.layer.cornerRadius = addButton.frame.size.width / 2
-    addButton.layer.borderWidth = 1
-    addButton.layer.borderColor = UIColor.white.cgColor
+    
   }
   
   override func setSelected(_ selected: Bool, animated: Bool) {

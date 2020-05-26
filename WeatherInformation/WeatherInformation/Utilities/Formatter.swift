@@ -86,7 +86,7 @@ public struct Formatters {
     public static let formatter: NumberFormatter = {
       let nf = NumberFormatter()
       nf.numberStyle = .decimal
-      nf.maximumFractionDigits = 1
+      nf.maximumFractionDigits = 0
       return nf
     }()
   }

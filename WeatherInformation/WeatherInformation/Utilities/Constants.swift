@@ -19,6 +19,7 @@ struct Constants {
   static let cityDetailViewController = "CityDetailViewController"
   static let cityTempFooterViewCell = "CityTempFooterViewCell"
   static let cityListViewController = "CityListViewController"
+  static let cityDetailWeatherInfoCell = "CityDetailWeatherInfoCell"
   static let temperatureDetailsCellIdentifier = "TemperatureDetailsCell"
   static let loadingView = "LoadingView"
   static let storyboard = "Main"
@@ -32,6 +33,10 @@ struct Constants {
   static let nightBackgraoundImageDetail = UIImage(named: "nightBackgroundForDetail")
   static let dayBackgraoundImageForTemperatureList = UIImage(named: "dayBackground")
   static let nightBackgraoundImageForTemperatureList = UIImage(named: "nightBackground")
+  static let dayBackgroundColour = UIColor(red: 41/255, green: 109/255, blue: 182/255, alpha: 1)
+  static let nightBackgroundColour = UIColor(red: 0/255, green: 0/255, blue: 5/255, alpha: 1)
+
+
   
   enum CurrentTime : String {
     case day = "TODAY"
@@ -39,5 +44,4 @@ struct Constants {
   }
   
 }
-
 

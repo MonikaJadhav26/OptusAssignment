@@ -21,17 +21,41 @@ class CityListViewController: BaseViewController {
   //MARK: - View Lifecycle Methods
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.setUpLodingView()
-    getAllCitiesList()
+//    self.citySearchBar.layer.borderColor = UIColor.blue.cgColor
+//    self.citySearchBar.layer.borderWidth = 1
+   self.citySearchBar.layer.cornerRadius = 10.0
+    self.citySearchBar.clipsToBounds = true
+//    self.citySearchBar.barTintColor = UIColor.clear
+//    self.citySearchBar.backgroundColor = UIColor.clear
+   
+    self.citySearchBar.searchBarStyle = UISearchBar.Style.prominent
+    self.citySearchBar.isTranslucent = false
+    let textFieldInsideSearchBar = self.citySearchBar.value(forKey: "searchField") as? UITextField
+    textFieldInsideSearchBar?.backgroundColor = UIColor.black
+    self.citySearchBar.barTintColor = UIColor.black
     
+    
+    self.setUpLodingView()
+    
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(true)
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(true)
+    getAllCitiesList()
   }
   
   //MARK: - Fetch all cities list from local file
   func getAllCitiesList() {
     loadingView.isHidden = false
+    self.showActivityIndicator()
     cityAddViewModel.getAllCityDataFromLocalFile{ result in
       switch(result) {
       case .success:
+        self.hideActivityIndicator()
         self.loadingView.isHidden = true
         self.cityListTable.reloadData()
       case .failure(let error):

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CityDetailWeatherInfoCell" id="gTV-IL-0wX" customClass="CityDetailWeatherInfoCell" customModule="WeatherInformation" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="151" height="158"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="151" height="158"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5F2-Ee-nOe">
+                        <rect key="frame" x="0.0" y="0.0" width="151" height="158"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wind" translatesAutoresizingMaskIntoConstraints="NO" id="hqW-ic-1tM">
+                                <rect key="frame" x="43.5" y="2" width="64" height="65"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="94S-4T-Z6Q"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="26" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ri8-oe-dUD">
+                                <rect key="frame" x="10" y="87" width="131" height="51"/>
+                                <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="24"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Feels Like" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFR-MU-BOX">
+                                <rect key="frame" x="10" y="67" width="131" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="KXN-4l-HW5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ri8-oe-dUD" firstAttribute="top" secondItem="RFR-MU-BOX" secondAttribute="bottom" id="1Bc-OM-dW2"/>
+                            <constraint firstItem="hqW-ic-1tM" firstAttribute="centerX" secondItem="5F2-Ee-nOe" secondAttribute="centerX" id="4Rp-iW-KZc"/>
+                            <constraint firstAttribute="bottom" secondItem="ri8-oe-dUD" secondAttribute="bottom" constant="20" symbolic="YES" id="9rc-wX-9vC"/>
+                            <constraint firstItem="RFR-MU-BOX" firstAttribute="leading" secondItem="5F2-Ee-nOe" secondAttribute="leading" constant="10" id="A9W-wa-Hlm"/>
+                            <constraint firstItem="RFR-MU-BOX" firstAttribute="leading" secondItem="ri8-oe-dUD" secondAttribute="leading" id="QJ2-Oe-E13"/>
+                            <constraint firstAttribute="trailing" secondItem="RFR-MU-BOX" secondAttribute="trailing" constant="10" id="TBO-9h-XLH"/>
+                            <constraint firstItem="hqW-ic-1tM" firstAttribute="top" secondItem="5F2-Ee-nOe" secondAttribute="top" constant="2" id="UL6-Y3-rzS"/>
+                            <constraint firstItem="RFR-MU-BOX" firstAttribute="trailing" secondItem="ri8-oe-dUD" secondAttribute="trailing" id="Wlg-zv-C8i"/>
+                            <constraint firstItem="RFR-MU-BOX" firstAttribute="centerX" secondItem="5F2-Ee-nOe" secondAttribute="centerX" id="m6K-1c-yQH"/>
+                            <constraint firstItem="RFR-MU-BOX" firstAttribute="top" secondItem="hqW-ic-1tM" secondAttribute="bottom" id="xWQ-YP-mWv"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="5F2-Ee-nOe" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="0kx-RT-b58"/>
+                <constraint firstAttribute="bottom" secondItem="5F2-Ee-nOe" secondAttribute="bottom" id="2PM-ND-swL"/>
+                <constraint firstItem="5F2-Ee-nOe" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="QnS-dS-H6B"/>
+                <constraint firstAttribute="trailing" secondItem="5F2-Ee-nOe" secondAttribute="trailing" id="ciU-hQ-QVm"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="151" height="158"/>
+            <connections>
+                <outlet property="backgroundContainerView" destination="5F2-Ee-nOe" id="QFi-5X-REH"/>
+                <outlet property="weatherIconImageView" destination="hqW-ic-1tM" id="TSV-f9-dUo"/>
+                <outlet property="weatherKeyLabel" destination="RFR-MU-BOX" id="d6k-YZ-Why"/>
+                <outlet property="weatherValueLabel" destination="ri8-oe-dUD" id="sbM-S4-ijf"/>
+            </connections>
+            <point key="canvasLocation" x="-65.94202898550725" y="54.241071428571423"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="wind" width="64" height="64"/>
+    </resources>
+</document>

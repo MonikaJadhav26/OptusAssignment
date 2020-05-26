@@ -11,7 +11,9 @@ import UIKit
 class CityDetailViewController: BaseViewController {
   
   //MARK: - Outlets and Variables
-  @IBOutlet weak var cityDetailTable: UITableView!
+ // @IBOutlet weak var cityDetailTable: UITableView!
+  @IBOutlet weak var cityDetailCollectionView: UICollectionView!
+
   @IBOutlet weak var cityNameLabel: UILabel!
   @IBOutlet weak var cityTempDescriptionLabel: UILabel!
   @IBOutlet weak var cityDayNameLabel: UILabel!
@@ -26,13 +28,17 @@ class CityDetailViewController: BaseViewController {
   let cityDetailViewModel = CityDetailViewModel()
   var cityID = Int()
   var weatherDeatils = [Dictionary<String, String>]()
-  
+  var weatherIcons = [Dictionary<String, UIImage>]()
+  var isCelciusSelected : Bool?
+
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.cityDetailTable.register(UINib.init(nibName: Constants.temperatureDetailsCellIdentifier, bundle: nil), forCellReuseIdentifier: Constants.temperatureDetailsCellIdentifier)
+    self.cityDetailCollectionView.register(UINib.init(nibName: Constants.cityDetailWeatherInfoCell, bundle: nil), forCellWithReuseIdentifier: Constants.cityDetailWeatherInfoCell)
+    cityDetailCollectionView.isPagingEnabled = true
     setUpLodingView()
     getCityWeatherDetails()
+    
   }
   
   @objc override func retryPressed() {
@@ -58,23 +64,23 @@ class CityDetailViewController: BaseViewController {
     cityNameLabel.text = cityDetailViewModel.getCityName()
     cityDayNameLabel.text = cityDetailViewModel.getWeekday()
     cityTempDescriptionLabel.text = cityDetailViewModel.getWeatherDiscription()
-    cityDegreeTempLabel.text = cityDetailViewModel.getCityTemperature()
+    cityDegreeTempLabel.text = cityDetailViewModel.getCityTemperature(isCelcius:isCelciusSelected!)
     cityMinMaxTempLabel.text = cityDetailViewModel.getCityMinMaxTemperatureValues()
     weatherIconImageView.downloaded(from: cityDetailViewModel.getCityIcon())
     weatherDeatils = cityDetailViewModel.getAllWeatherDetailsArray()
+    weatherIcons = cityDetailViewModel.getAllWeatherIconArray()
     backgroundImageView.image = cityDetailViewModel.getImageForBackground()
-    animateWeatherIconImage()
-    self.cityDetailTable.reloadData()
+    animateWeatherIconImage(cell : weatherIconImageView)
+    self.cityDetailCollectionView.reloadData()
   }
   
   //MARK: - Method for imageView animation
-  func animateWeatherIconImage()  {
-    UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 5, options: [],
-                   animations: {
-                    self.weatherIconImageView.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+  func animateWeatherIconImage(cell: UIImageView)  {
+    UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 5, options: [], animations: {
+                    cell.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
     }, completion: { finished in
       UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 3, options: .curveEaseInOut,  animations: {
-        self.weatherIconImageView.transform = CGAffineTransform(scaleX: 1, y: 1)
+        cell.transform = CGAffineTransform(scaleX: 1, y: 1)
       },    completion: nil
       )
     }
@@ -85,30 +91,36 @@ class CityDetailViewController: BaseViewController {
   @IBAction func listButtonClicked(_ sender: Any) {
     self.navigationController?.popViewController(animated: true)
   }
-  
 }
-//MARK: - UITableview delegate and datasource methods
-extension CityDetailViewController : UITableViewDelegate , UITableViewDataSource , UIScrollViewDelegate {
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return weatherDeatils.count
+
+//MARK: - UICollectionview delegate and datasource methods
+extension CityDetailViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+
+func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+  return weatherDeatils.count
+}
+ 
+
+func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.cityDetailWeatherInfoCell, for: indexPath) as! CityDetailWeatherInfoCell
+  for key in weatherDeatils[indexPath.row].keys {
+     cell.weatherKeyLabel.text = key
+     cell.weatherValueLabel.text = weatherDeatils[indexPath.row][key]
+    cell.weatherIconImageView.image = weatherIcons[indexPath.row][key]
   }
-  
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
-    let cell = tableView.dequeueReusableCell(withIdentifier: Constants.temperatureDetailsCellIdentifier , for: indexPath)  as! TemperatureDetailsCell
-    cell.accessibilityIdentifier = "cityCell_\(indexPath.row)"
-    
-    for key in weatherDeatils[indexPath.row].keys {
-      cell.tempKeyLabel.text = key
-      cell.tempValueLabel.text = weatherDeatils[indexPath.row][key]
-    }
-    
+  cell.backgroundContainerView.backgroundColor = cityDetailViewModel.getColourForBackground()
+
+   
+    animateWeatherIconImage(cell: cell.weatherIconImageView)
     return cell
-  }
-  
-  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return UITableView.automaticDimension
-  }
-  
 }
+}
+  
+  extension CityDetailViewController: UICollectionViewDelegateFlowLayout {
+      func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+         let width = view.frame.size.width
+         return CGSize(width: width/4, height: 160)
+      }
+    
+  }
 

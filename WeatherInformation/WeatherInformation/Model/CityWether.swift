@@ -103,3 +103,10 @@ struct Wind: Codable {
   let speed: Double
   let deg: Int
 }
+
+
+//struct CityInformation: Decodable {
+//    let id: Int?
+//     let name: String?
+//    let country: String?
+//}

@@ -47,6 +47,27 @@ class CityAddViewModel : NSObject {
     }
   }
   
+  
+  
+//  func getAllCityDataFromLocalFile(completion: @escaping (Result<Bool, Error>) -> Void) {
+//    if let path = Bundle.main.url(forResource: "currentlist", withExtension: "json") {
+//      do {
+//        let data = try Data(contentsOf:  path)
+//        let decoder = JSONDecoder()
+//        let jsonData = try decoder.decode([CityInformation].self, from: data)
+//        print("\(jsonData)")
+//        completion(.success(true))
+//      } catch {
+//        print("parse error: \(error.localizedDescription)")
+//        completion(.failure(error))
+//      }
+//    }
+//    else {
+//      print("Invalid filename/path.")
+//    }
+//  }
+  
+  
   //MARK: - Method for fetching city temperature data
   func fetchCityDetailWeatherForPerticularCity(cityId : Int,completion: @escaping (Result<Bool, Error>) -> Void) {
     apiClient.getAllCityDetailWeather(cityId : cityId) { (result) in

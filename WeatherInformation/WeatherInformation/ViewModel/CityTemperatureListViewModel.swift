@@ -60,7 +60,6 @@ class CityTemperatureListViewModel : NSObject {
   
   func getCityId(indexPath: IndexPath) -> Int {
     return Int(self.cityTempList[indexPath.row].id)
-    
   }
   
   func getCityTemperature(indexPath: IndexPath) -> String {

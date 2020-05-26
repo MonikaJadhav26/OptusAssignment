@@ -14,11 +14,9 @@ class CoreDataManager {
   
   
   //MARK: - Core Data Stack
-  //1
   static let sharedManager = CoreDataManager()
-  private init() {} // Prevent clients from creating another instance.
+  private init() {}
   
-  //2
   lazy var persistentContainer: NSPersistentContainer = {
     let container = NSPersistentContainer(name: "CityTemperature")
     container.loadPersistentStores(completionHandler: { (storeDescription, error) in
@@ -30,15 +28,12 @@ class CoreDataManager {
     return container
   }()
   
-  //3
   func saveContext () {
     let context = CoreDataManager.sharedManager.persistentContainer.viewContext
     if context.hasChanges {
       do {
         try context.save()
       } catch {
-        // Replace this implementation with code to handle the error appropriately.
-        // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
         let nserror = error as NSError
         fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
       }
@@ -48,7 +43,6 @@ class CoreDataManager {
   var cityList = Array<City>()
   
   //MARK: - Methods for performing operations on database
-  /*Insert*/
   func insertCity(name: String, id : Int , temperature : Double)  {
     
     if !checkRecordForSelectedIdIsExists(id: id)  {
@@ -61,14 +55,12 @@ class CoreDataManager {
       let newCity = NSManagedObject(entity: entity,
                                     insertInto: managedContext)
       
-      // Initialize Fetch Request
       let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
-      //Add Predicate
+      
       let predicate = NSPredicate(format: "(id = %d)", id)
       fetchRequest.entity = entity
       fetchRequest.predicate = predicate
       
-      // Populate City
       newCity.setValue(name, forKey: "name")
       newCity.setValue(id, forKey: "id")
       newCity.setValue(temperature, forKey: "temperature")
@@ -86,9 +78,7 @@ class CoreDataManager {
     let entity = NSEntityDescription.entity(forEntityName: "City",
                                             in: managedContext)!
     
-    // Initialize Fetch Request
     let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
-    //Add Predicate
     let predicate = NSPredicate(format: "(id = %d)", id)
     fetchRequest.entity = entity
     fetchRequest.predicate = predicate
@@ -107,19 +97,13 @@ class CoreDataManager {
     return false
   }
   
-  /*Fecth*/
   func fetchAllCities() -> Array<City> {
-    
+
     cityList.removeAll()
-    /*Before you can do anything with Core Data, you need a managed object context. */
     let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
-    
     let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "City")
-    
-    // Create Entity Description
     let entityDescription = NSEntityDescription.entity(forEntityName: "City", in: managedContext)
     
-    // Configure Fetch Request
     fetchRequest.entity = entityDescription
     do {
       let result = try managedContext.fetch(fetchRequest)
@@ -133,7 +117,6 @@ class CoreDataManager {
       let fetchError = error as NSError
       print(fetchError)
     }
-    
     return cityList
   }
   

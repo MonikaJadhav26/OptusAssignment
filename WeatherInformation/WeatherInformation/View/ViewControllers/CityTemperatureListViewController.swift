@@ -12,7 +12,6 @@ class CityTemperatureListViewController: BaseViewController {
   
   //MARK: - Outlets and Variables
   @IBOutlet weak var cityTemperatureTable: UITableView!
-  @IBOutlet weak var backgroundImageView: UIImageView!
   
   let cityTempViewModel = CityTemperatureListViewModel()
   var timer: Timer?
@@ -59,11 +58,6 @@ class CityTemperatureListViewController: BaseViewController {
     self.cityTemperatureTable.register(UINib.init(nibName: Constants.cityTempCellIdentifier, bundle: nil), forCellReuseIdentifier: Constants.cityTempCellIdentifier)
     self.setUpLodingView()
     startTimer()
-    if Formatters.CurrentTime.string() == Constants.CurrentTime.day.rawValue {
-      backgroundImageView.image = Constants.dayBackgraoundImageForTemperatureList
-    } else {
-      backgroundImageView.image = Constants.nightBackgraoundImageForTemperatureList
-    }
   }
   
   
@@ -112,6 +106,7 @@ extension CityTemperatureListViewController : UITableViewDelegate , UITableViewD
     tableView.deselectRow(at: indexPath, animated: true)
     let cityDetailViewController = UIStoryboard.init(name: Constants.storyboard, bundle: Bundle.main).instantiateViewController(withIdentifier: Constants.cityDetailViewController) as? CityDetailViewController
     cityDetailViewController?.cityID = cityTempViewModel.getCityId(indexPath : indexPath)
+    cityDetailViewController?.isCelciusSelected = self.isCelciusSelected
     self.navigationController?.pushViewController(cityDetailViewController!, animated: true)
   }
   
