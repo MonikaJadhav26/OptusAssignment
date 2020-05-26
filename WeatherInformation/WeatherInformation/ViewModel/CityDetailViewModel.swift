@@ -78,15 +78,14 @@ class CityDetailViewModel : NSObject {
     return minMaxTempString
   }
   
-  func getCityCurrentDayName() -> String {
-    return city[0].name ?? ""
-  }
+  
   
   func getAllWeatherDetailsArray() -> [Dictionary<String, String>]  {
     
     var weatherDeatils = [Dictionary<String, String>]()
     let windString = "\(String(describing: city[0].wind!.speed)) km/h"
-    
+    weatherDeatils.append(["MAX": (Formatters.Temp.string(from: Float(self.city[0].main?.tempMax ?? 0.0)))])
+    weatherDeatils.append(["MIN": (Formatters.Temp.string(from: Float(self.city[0].main?.tempMin ?? 0.0)))])
     weatherDeatils.append(["SUNRIZE": Formatters.Sunrise.string(from: city[0].sys!.sunrise)])
     weatherDeatils.append(["SUNSET": Formatters.Sunrise.string(from: city[0].sys!.sunset)])
     weatherDeatils.append(["HUMIDITY": Formatters.Humidity.string(from: Int(self.city[0].main?.humidity ?? 0))])
@@ -100,7 +99,8 @@ class CityDetailViewModel : NSObject {
   func getAllWeatherIconArray() -> [Dictionary<String, UIImage>]  {
     
     var weatherIcons = [Dictionary<String, UIImage>]()
-    
+    weatherIcons.append(["MAX": (UIImage(named: "maximum")!)])
+    weatherIcons.append(["MIN": (UIImage(named: "minimum")!)])
     weatherIcons.append(["SUNRIZE": (UIImage(named: "sunrise")!)])
     weatherIcons.append(["SUNSET": (UIImage(named: "sunset")!)])
     weatherIcons.append(["HUMIDITY": (UIImage(named: "humidity")!)])

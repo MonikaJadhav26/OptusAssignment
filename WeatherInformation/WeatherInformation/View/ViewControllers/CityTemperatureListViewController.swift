@@ -22,10 +22,12 @@ class CityTemperatureListViewController: BaseViewController {
     super.viewDidLoad()
     setUpUI()
     
+    
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(true)
+    startTimer()
     isCelciusSelected = true
     if cityTempViewModel.fetchAllCityTemperatureRecordsFromDB() {
       self.cityTemperatureTable.reloadData()
@@ -57,7 +59,6 @@ class CityTemperatureListViewController: BaseViewController {
     self.navigationController?.isNavigationBarHidden = true
     self.cityTemperatureTable.register(UINib.init(nibName: Constants.cityTempCellIdentifier, bundle: nil), forCellReuseIdentifier: Constants.cityTempCellIdentifier)
     self.setUpLodingView()
-    startTimer()
   }
   
   
@@ -93,11 +94,14 @@ extension CityTemperatureListViewController : UITableViewDelegate , UITableViewD
     let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cityTempCellIdentifier, for: indexPath) as! CityTemperatureTableViewCell
     cell.accessibilityIdentifier = "cityCell_\(indexPath.row)"
     cell.cityNameLabel.text = cityTempViewModel.getCityName(indexPath : indexPath)
+    cell.cityTimeLabel.text = cityTempViewModel.getCityCurrentTime(indexPath: indexPath)
     if isCelciusSelected! {
       cell.cityTempLabel.text = cityTempViewModel.getCityTemperature(indexPath : indexPath)
     }else {
       cell.cityTempLabel.text = cityTempViewModel.getCityTemperatureInFaranite(indexPath : indexPath)
     }
+    cell.backgroundImageView.image = cityTempViewModel.getCityCurrentBAckgroundImage(indexPath: indexPath)
+
     
     return cell
   }

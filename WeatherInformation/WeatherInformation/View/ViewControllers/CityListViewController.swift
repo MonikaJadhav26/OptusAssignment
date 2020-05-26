@@ -21,17 +21,14 @@ class CityListViewController: BaseViewController {
   //MARK: - View Lifecycle Methods
   override func viewDidLoad() {
     super.viewDidLoad()
-//    self.citySearchBar.layer.borderColor = UIColor.blue.cgColor
-//    self.citySearchBar.layer.borderWidth = 1
-   self.citySearchBar.layer.cornerRadius = 10.0
+    
+    self.citySearchBar.layer.cornerRadius = 10.0
     self.citySearchBar.clipsToBounds = true
-//    self.citySearchBar.barTintColor = UIColor.clear
-//    self.citySearchBar.backgroundColor = UIColor.clear
-   
+
     self.citySearchBar.searchBarStyle = UISearchBar.Style.prominent
     self.citySearchBar.isTranslucent = false
     let textFieldInsideSearchBar = self.citySearchBar.value(forKey: "searchField") as? UITextField
-    textFieldInsideSearchBar?.backgroundColor = UIColor.black
+    textFieldInsideSearchBar?.backgroundColor = UIColor.darkGray
     self.citySearchBar.barTintColor = UIColor.black
     
     

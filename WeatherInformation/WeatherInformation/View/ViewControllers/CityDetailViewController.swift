@@ -13,11 +13,9 @@ class CityDetailViewController: BaseViewController {
   //MARK: - Outlets and Variables
  // @IBOutlet weak var cityDetailTable: UITableView!
   @IBOutlet weak var cityDetailCollectionView: UICollectionView!
-
   @IBOutlet weak var cityNameLabel: UILabel!
   @IBOutlet weak var cityTempDescriptionLabel: UILabel!
   @IBOutlet weak var cityDayNameLabel: UILabel!
-  @IBOutlet weak var cityMinMaxTempLabel: UILabel!
   @IBOutlet weak var cityDegreeTempLabel: UILabel!
   @IBOutlet weak var weatherIconImageView: UIImageView!
   @IBOutlet weak var backgroundImageView: UIImageView!
@@ -65,7 +63,6 @@ class CityDetailViewController: BaseViewController {
     cityDayNameLabel.text = cityDetailViewModel.getWeekday()
     cityTempDescriptionLabel.text = cityDetailViewModel.getWeatherDiscription()
     cityDegreeTempLabel.text = cityDetailViewModel.getCityTemperature(isCelcius:isCelciusSelected!)
-    cityMinMaxTempLabel.text = cityDetailViewModel.getCityMinMaxTemperatureValues()
     weatherIconImageView.downloaded(from: cityDetailViewModel.getCityIcon())
     weatherDeatils = cityDetailViewModel.getAllWeatherDetailsArray()
     weatherIcons = cityDetailViewModel.getAllWeatherIconArray()

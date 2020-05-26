@@ -10,42 +10,63 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CityTemperatureTableViewCell" rowHeight="70" id="KGk-i7-Jjw" customClass="CityTemperatureTableViewCell" customModule="WeatherInformation" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="437" height="70"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CityTemperatureTableViewCell" rowHeight="107" id="KGk-i7-Jjw" customClass="CityTemperatureTableViewCell" customModule="WeatherInformation" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="437" height="107"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="437" height="70"/>
+                <rect key="frame" x="0.0" y="0.0" width="437" height="107"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jo6-9P-Zxb">
-                        <rect key="frame" x="0.0" y="0.0" width="437" height="70"/>
+                        <rect key="frame" x="0.0" y="0.0" width="437" height="107"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="58C-eo-hL9">
-                                <rect key="frame" x="10" y="10" width="200" height="50"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wjr-ok-Zzj">
+                                <rect key="frame" x="-1" y="-1" width="439" height="108"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8of-mr-yRE">
+                                <rect key="frame" x="10" y="20" width="200" height="28"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="kLg-gy-gkj"/>
+                                    <constraint firstAttribute="height" constant="28" id="VjY-jz-IqP"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="19"/>
+                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="highlightedColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temp" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWe-uA-vmb">
-                                <rect key="frame" x="315" y="10" width="112" height="50"/>
-                                <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="32"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="58C-eo-hL9">
+                                <rect key="frame" x="10" y="48" width="275" height="39"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="highlightedColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temp" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWe-uA-vmb">
+                                <rect key="frame" x="315" y="10" width="112" height="87"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="112" id="6nd-DH-zOC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="38"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.92504758883248728" green="0.87258232409167724" blue="0.91008893625888476" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="58C-eo-hL9" secondAttribute="bottom" constant="10" id="Bxn-Di-9CI"/>
-                            <constraint firstAttribute="trailing" secondItem="uWe-uA-vmb" secondAttribute="trailing" constant="10" id="C0a-a8-7PA"/>
-                            <constraint firstItem="58C-eo-hL9" firstAttribute="top" secondItem="jo6-9P-Zxb" secondAttribute="top" constant="10" id="ODa-g0-T6p"/>
-                            <constraint firstItem="uWe-uA-vmb" firstAttribute="leading" secondItem="58C-eo-hL9" secondAttribute="trailing" constant="105" id="VaW-A0-PXm"/>
-                            <constraint firstAttribute="bottom" secondItem="uWe-uA-vmb" secondAttribute="bottom" constant="10" id="cvF-fe-DZf"/>
-                            <constraint firstItem="uWe-uA-vmb" firstAttribute="top" secondItem="jo6-9P-Zxb" secondAttribute="top" constant="10" id="lMN-Ly-LAh"/>
-                            <constraint firstItem="58C-eo-hL9" firstAttribute="leading" secondItem="jo6-9P-Zxb" secondAttribute="leading" constant="10" id="rqL-DI-3eF"/>
+                            <constraint firstAttribute="bottom" secondItem="uWe-uA-vmb" secondAttribute="bottom" constant="10" id="89k-Ys-8UZ"/>
+                            <constraint firstItem="8of-mr-yRE" firstAttribute="top" secondItem="jo6-9P-Zxb" secondAttribute="top" constant="20" id="BEl-Og-1yc"/>
+                            <constraint firstItem="58C-eo-hL9" firstAttribute="top" secondItem="8of-mr-yRE" secondAttribute="bottom" id="Et0-m5-aac"/>
+                            <constraint firstAttribute="bottom" secondItem="58C-eo-hL9" secondAttribute="bottom" constant="20" id="KXV-bU-Exs"/>
+                            <constraint firstAttribute="trailing" secondItem="wjr-ok-Zzj" secondAttribute="trailing" constant="-1" id="P6v-Nj-8Jm"/>
+                            <constraint firstItem="wjr-ok-Zzj" firstAttribute="leading" secondItem="jo6-9P-Zxb" secondAttribute="leading" constant="-1" id="QYV-5f-I2f"/>
+                            <constraint firstItem="uWe-uA-vmb" firstAttribute="top" secondItem="jo6-9P-Zxb" secondAttribute="top" constant="10" id="UW0-PA-XDt"/>
+                            <constraint firstAttribute="trailing" secondItem="uWe-uA-vmb" secondAttribute="trailing" constant="10" id="aOr-KK-Jxm"/>
+                            <constraint firstItem="uWe-uA-vmb" firstAttribute="leading" secondItem="8of-mr-yRE" secondAttribute="trailing" constant="105" id="cbu-6Z-gEO"/>
+                            <constraint firstAttribute="bottom" secondItem="wjr-ok-Zzj" secondAttribute="bottom" id="ere-ez-Xar"/>
+                            <constraint firstItem="wjr-ok-Zzj" firstAttribute="top" secondItem="jo6-9P-Zxb" secondAttribute="top" constant="-1" id="mTP-mL-mp2"/>
+                            <constraint firstItem="8of-mr-yRE" firstAttribute="leading" secondItem="58C-eo-hL9" secondAttribute="leading" id="mo1-Sb-TVR"/>
+                            <constraint firstItem="8of-mr-yRE" firstAttribute="leading" secondItem="jo6-9P-Zxb" secondAttribute="leading" constant="10" id="qZB-HO-m2h"/>
+                            <constraint firstAttribute="height" constant="107" id="rA7-ec-xNB"/>
+                            <constraint firstItem="uWe-uA-vmb" firstAttribute="leading" secondItem="58C-eo-hL9" secondAttribute="trailing" constant="30" id="rvR-f0-a3K"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -61,10 +82,12 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="backgroundContainerView" destination="jo6-9P-Zxb" id="geu-j6-IRd"/>
+                <outlet property="backgroundImageView" destination="wjr-ok-Zzj" id="v6a-9e-Gcn"/>
                 <outlet property="cityNameLabel" destination="58C-eo-hL9" id="KE2-fs-t4X"/>
                 <outlet property="cityTempLabel" destination="uWe-uA-vmb" id="GDT-DT-u2v"/>
+                <outlet property="cityTimeLabel" destination="8of-mr-yRE" id="4MF-gO-AWM"/>
             </connections>
-            <point key="canvasLocation" x="41.304347826086961" y="62.946428571428569"/>
+            <point key="canvasLocation" x="41.304347826086961" y="75.334821428571431"/>
         </tableViewCell>
     </objects>
 </document>

@@ -17,7 +17,7 @@ public struct Formatters {
   // MARK: Sunrise/Sunset
   public static let sunTime: DateFormatter = {
     let formatter = DateFormatter()
-    formatter.dateFormat = "HH:mm"
+    formatter.dateFormat = "hh:mm a"
     formatter.timeZone = timeZone
     return formatter
   }()
@@ -40,10 +40,26 @@ public struct Formatters {
     
     public static let formatter: DateFormatter = {
       let formatter = DateFormatter()
-      formatter.dateFormat = "EEEE"
+      formatter.dateFormat = "eee, hh:mm a"
       formatter.timeZone = timeZone
       return formatter
     }()
+  }
+  
+  public struct CurrentTimeForCity {
+
+    public static func string(from value: String) -> String {
+      let dateStr = value
+      let formatter = DateFormatter()
+      formatter.dateFormat = "hh:mm a"
+      formatter.timeZone = timeZone
+      let date = formatter.date(from: dateStr)
+      let interval = date?.timeIntervalSince1970
+      let currentTime = Formatters.Time.string(from: Int(interval ?? 0.0))
+      return currentTime
+    }
+    
+    
   }
   
   // MARK: Time

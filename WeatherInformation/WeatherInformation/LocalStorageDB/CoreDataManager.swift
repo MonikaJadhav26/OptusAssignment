@@ -43,7 +43,7 @@ class CoreDataManager {
   var cityList = Array<City>()
   
   //MARK: - Methods for performing operations on database
-  func insertCity(name: String, id : Int , temperature : Double)  {
+  func insertCity(name: String, id : Int , temperature : Double , currentTime : String)  {
     
     if !checkRecordForSelectedIdIsExists(id: id)  {
       
@@ -64,6 +64,7 @@ class CoreDataManager {
       newCity.setValue(name, forKey: "name")
       newCity.setValue(id, forKey: "id")
       newCity.setValue(temperature, forKey: "temperature")
+      newCity.setValue(currentTime, forKey: "currentTime")
       do {
         try managedContext.save()
       } catch let error as NSError {

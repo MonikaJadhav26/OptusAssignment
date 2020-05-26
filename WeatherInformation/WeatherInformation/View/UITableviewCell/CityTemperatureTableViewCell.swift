@@ -12,8 +12,11 @@ class CityTemperatureTableViewCell: UITableViewCell {
   
   //MARK: - Outlets and Variables
   @IBOutlet weak var backgroundContainerView: UIView!
+  @IBOutlet weak var backgroundImageView: UIImageView!
   @IBOutlet weak var cityNameLabel: UILabel!
   @IBOutlet weak var cityTempLabel: UILabel!
+  @IBOutlet weak var cityTimeLabel: UILabel!
+
   
   
   override func awakeFromNib() {
