@@ -14,26 +14,13 @@ class CityListViewController: BaseViewController {
   @IBOutlet weak var cityListTable: UITableView!
   @IBOutlet weak var citySearchBar: UISearchBar!
   
-  
   let cityAddViewModel = CityAddViewModel()
-  
   
   //MARK: - View Lifecycle Methods
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    self.citySearchBar.layer.cornerRadius = 10.0
-    self.citySearchBar.clipsToBounds = true
-
-    self.citySearchBar.searchBarStyle = UISearchBar.Style.prominent
-    self.citySearchBar.isTranslucent = false
-    let textFieldInsideSearchBar = self.citySearchBar.value(forKey: "searchField") as? UITextField
-    textFieldInsideSearchBar?.backgroundColor = UIColor.darkGray
-    self.citySearchBar.barTintColor = UIColor.black
-    
-    
     self.setUpLodingView()
-    
+    setUPSearchBar()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -43,6 +30,17 @@ class CityListViewController: BaseViewController {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(true)
     getAllCitiesList()
+  }
+  
+  //MARK: - SearchBar Setup
+  func setUPSearchBar() {
+    self.citySearchBar.layer.cornerRadius = 10.0
+    self.citySearchBar.clipsToBounds = true
+    self.citySearchBar.searchBarStyle = UISearchBar.Style.prominent
+    self.citySearchBar.isTranslucent = false
+    let textFieldInsideSearchBar = self.citySearchBar.value(forKey: "searchField") as? UITextField
+    textFieldInsideSearchBar?.backgroundColor = UIColor.darkGray
+    self.citySearchBar.barTintColor = UIColor.black
   }
   
   //MARK: - Fetch all cities list from local file

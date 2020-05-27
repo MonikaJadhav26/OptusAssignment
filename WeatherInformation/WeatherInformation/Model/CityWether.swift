@@ -106,7 +106,7 @@ struct Wind: Codable {
 
 
 struct CityInformation: Decodable {
-    let id: Int
-    let name: String
-   let country: String
+  let id: Int
+  let name: String
+  let country: String
 }

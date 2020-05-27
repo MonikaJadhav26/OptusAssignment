@@ -9,21 +9,22 @@
 import UIKit
 
 class CityDetailWeatherInfoCell: UICollectionViewCell {
-
+  
   //MARK: - Outlets and Variables
   @IBOutlet weak var backgroundContainerView: UIView!
-
-   @IBOutlet weak var weatherIconImageView: UIImageView!
-   @IBOutlet weak var weatherKeyLabel: UILabel!
-   @IBOutlet weak var weatherValueLabel: UILabel!
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-             backgroundContainerView.layer.cornerRadius = 5
-             backgroundContainerView.layer.shadowColor = UIColor.white.cgColor
-             backgroundContainerView.layer.shadowOpacity = 1
-             backgroundContainerView.layer.shadowOffset = .zero
-             backgroundContainerView.layer.shadowRadius = 5
-    }
-
+  
+  @IBOutlet weak var weatherIconImageView: UIImageView!
+  @IBOutlet weak var weatherKeyLabel: UILabel!
+  @IBOutlet weak var weatherValueLabel: UILabel!
+  
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    // Initialization code
+    backgroundContainerView.layer.cornerRadius = 5
+    backgroundContainerView.layer.shadowColor = UIColor.white.cgColor
+    backgroundContainerView.layer.shadowOpacity = 1
+    backgroundContainerView.layer.shadowOffset = .zero
+    backgroundContainerView.layer.shadowRadius = 5
+  }
+  
 }

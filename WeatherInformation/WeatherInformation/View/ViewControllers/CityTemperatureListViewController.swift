@@ -21,8 +21,6 @@ class CityTemperatureListViewController: BaseViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setUpUI()
-    
-    
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -49,7 +47,7 @@ class CityTemperatureListViewController: BaseViewController {
     }
   }
   func startTimer() {
-    timer =  Timer.scheduledTimer(withTimeInterval: 1000.0, repeats: true) { (timer) in
+    timer =  Timer.scheduledTimer(withTimeInterval: 500.0, repeats: true) { (timer) in
       self.getCityTemperatureListFromURL()
     }
   }
@@ -60,7 +58,6 @@ class CityTemperatureListViewController: BaseViewController {
     self.cityTemperatureTable.register(UINib.init(nibName: Constants.cityTempCellIdentifier, bundle: nil), forCellReuseIdentifier: Constants.cityTempCellIdentifier)
     self.setUpLodingView()
   }
-  
   
   
   //MARK: - Call to get all data server
@@ -79,7 +76,6 @@ class CityTemperatureListViewController: BaseViewController {
       }
     }
   }
-  
 }
 
 
@@ -101,7 +97,6 @@ extension CityTemperatureListViewController : UITableViewDelegate , UITableViewD
       cell.cityTempLabel.text = cityTempViewModel.getCityTemperatureInFaranite(indexPath : indexPath)
     }
     cell.backgroundImageView.image = cityTempViewModel.getCityCurrentBAckgroundImage(indexPath: indexPath)
-
     
     return cell
   }
@@ -122,13 +117,12 @@ extension CityTemperatureListViewController : UITableViewDelegate , UITableViewD
     
     let footerView =  Bundle.main.loadNibNamed(Constants.cityTempFooterViewCell, owner: self, options: nil)?.first as! CityTempFooterViewCell
     footerView.delegate = self
+    
     if isCelciusSelected! {
       footerView.celciusButton.setTitleColor(.white, for: .normal)
       footerView.faraniteButton.setTitleColor(.lightGray, for: .normal)
-      
     }else {
       footerView.celciusButton.setTitleColor(.lightGray, for: .normal)
-      
       footerView.faraniteButton.setTitleColor(.white, for: .normal)
       
     }
@@ -154,7 +148,6 @@ extension CityTemperatureListViewController : CityTempFooterViewDelegate {
   func degreeFareniteButtonTapped(sender: UIButton) {
     isCelciusSelected = false
     cityTemperatureTable.reloadData()
-    
   }
   
   func addButtonTapped() {

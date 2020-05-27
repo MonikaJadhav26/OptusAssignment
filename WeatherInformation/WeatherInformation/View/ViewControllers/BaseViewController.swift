@@ -27,9 +27,6 @@ class BaseViewController: UIViewController {
     
   }
   
-  @objc func retryPressed() {
-  }
-  
   //MARK: - Add tap Gesture to View
   func addTapGesture()  {
     let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,action: #selector(self.dismissKeyboard))

@@ -34,11 +34,9 @@ class CityTemperatureListViewModel : NSObject {
   }
   
   func storeCityTemperatureInformationInDatabase(result : [List])  {
-    
     for city in result {
-      CoreDataManager.sharedManager.insertCity(name: city.name ?? "", id: city.id ?? 0, temperature: city.main?.temp ?? 0.0, currentTime: Formatters.Sunrise.string(from: city.dt ?? 0))
+      CoreDataManager.sharedManager.insertCity(name: city.name ?? "", id: city.id ?? 0, temperature: city.main?.temp ?? 0.0, currentTime: Formatters.Sunrise.string(from: city.dt ?? 0) , timezone: city.sys?.timezone ?? 0)
     }
-    
   }
   
   func fetchAllCityTemperatureRecordsFromDB() -> Bool {
@@ -72,7 +70,6 @@ class CityTemperatureListViewModel : NSObject {
       return Constants.dayBackgraoundImageDetail!
     }
     return Constants.nightBackgraoundImageDetail!
-
   }
   
   func getCityTemperature(indexPath: IndexPath) -> String {

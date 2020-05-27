@@ -15,7 +15,7 @@ class CityAddViewModelTests: XCTestCase {
   let cityAddViewModel = CityAddViewModel()
 
     override func setUp() {
-        if let path = Bundle.main.path(forResource: "cityList", ofType: "json") {
+        if let path = Bundle.main.path(forResource: "currentlist", ofType: "json") {
           do {
             let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
             let responseModel: [CityInformation] = try! JSONDecoder().decode([CityInformation].self, from: data)

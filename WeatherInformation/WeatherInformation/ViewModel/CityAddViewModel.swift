@@ -18,7 +18,7 @@ class CityAddViewModel : NSObject {
   var cityOriginalArray : [CityInformation] = [CityInformation]()
   var citySearchedArray : [CityInformation] = [CityInformation]()
   
-  
+  //MARK: - Method for search perticular city
   func searchCity(with searchText: String, completion: @escaping () -> Void) {
     if !searchText.isEmpty {
       citySearchedArray = self.cityOriginalArray
@@ -29,40 +29,21 @@ class CityAddViewModel : NSObject {
     completion()
   }
   
-  /*
+  //MARK: - Method for fetching all cities list from local file
   func getAllCityDataFromLocalFile(completion: @escaping (Result<Bool, Error>) -> Void) {
-    if let path = Bundle.main.path(forResource: "cityList", ofType: "json") {
+    if let url = Bundle.main.url(forResource:"currentlist", withExtension: "json") {
       do {
-        let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-        let responseModel: [CityInformation] = try! JSONDecoder().decode([CityInformation].self, from: data)
-        self.cityOriginalArray = responseModel
+        let data = try Data(contentsOf: url)
+        let decoder = JSONDecoder()
+        let jsonData = try decoder.decode([CityInformation].self, from: data)
+        self.cityOriginalArray = jsonData
         self.cityInformation = self.cityOriginalArray
         completion(.success(true))
       } catch {
-        print("parse error: \(error.localizedDescription)")
-        completion(.failure(error))
+        print("error:\(error)")
       }
     }
-    else {
-      print("Invalid filename/path.")
-    }
-  }*/
-  
-  func getAllCityDataFromLocalFile(completion: @escaping (Result<Bool, Error>) -> Void) {
-    if let url = Bundle.main.url(forResource:"currentlist", withExtension: "json") {
-               do {
-                   let data = try Data(contentsOf: url)
-                   let decoder = JSONDecoder()
-                   let jsonData = try decoder.decode([CityInformation].self, from: data)
-                     self.cityOriginalArray = jsonData
-                       self.cityInformation = self.cityOriginalArray
-                          completion(.success(true))
-               } catch {
-                   print("error:\(error)")
-               }
-           }
   }
-  
   
   //MARK: - Method for fetching city temperature data
   func fetchCityDetailWeatherForPerticularCity(cityId : Int,completion: @escaping (Result<Bool, Error>) -> Void) {
@@ -81,7 +62,7 @@ class CityAddViewModel : NSObject {
   
   func storeCityTemperatureInformationInDatabase(result : [CityWether])  {
     for city in result {
-      CoreDataManager.sharedManager.insertCity(name: city.name ?? "", id: city.id ?? 0, temperature: city.main?.temp ?? 0.0 ,currentTime: Formatters.Sunrise.string(from: city.dt ?? 0))
+      CoreDataManager.sharedManager.insertCity(name: city.name ?? "", id: city.id ?? 0, temperature: city.main?.temp ?? 0.0 ,currentTime: Formatters.Sunrise.string(from: city.dt ?? 0), timezone: city.timezone ?? 0)
     }
   }
   
@@ -90,7 +71,7 @@ class CityAddViewModel : NSObject {
   }
   
   func getCityId(indexPath: IndexPath) -> Int {
-    return self.cityInformation[indexPath.row].id 
+    return self.cityInformation[indexPath.row].id
   }
   
   func getCityName(indexPath: IndexPath) -> String {

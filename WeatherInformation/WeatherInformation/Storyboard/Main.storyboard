@@ -104,7 +104,7 @@
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cfk-bH-pOA">
                                 <rect key="frame" x="0.0" y="96" width="414" height="766"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CityListTableViewCell" id="3pr-7X-dl6">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
@@ -166,7 +166,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ooM-2k-LGg">
-                                <rect key="frame" x="0.0" y="251" width="414" height="128"/>
+                                <rect key="frame" x="0.0" y="246" width="414" height="128"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hya-rg-YIc">
                                         <rect key="frame" x="20" y="38" width="374" height="80"/>
@@ -210,14 +210,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1vv-XH-Xka">
-                                <rect key="frame" x="167" y="183" width="80" height="66"/>
+                                <rect key="frame" x="167" y="178" width="80" height="66"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="5sj-Q0-vUa"/>
                                     <constraint firstAttribute="height" constant="66" id="lan-Rs-FfU"/>
                                 </constraints>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Y6V-Gc-eH5">
-                                <rect key="frame" x="10" y="387" width="394" height="475"/>
+                                <rect key="frame" x="10" y="382" width="394" height="480"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ipr-SG-NAD">
                                     <size key="itemSize" width="150" height="146"/>
@@ -226,7 +226,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CityDetailWeatherInfoCell" translatesAutoresizingMaskIntoConstraints="NO" id="aD7-h9-xfp" customClass="CityDetailWeatherInfoCell" customModule="WeatherInformation" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="CityDetailWeatherInfoCell" translatesAutoresizingMaskIntoConstraints="NO" id="aD7-h9-xfp" customClass="CityDetailWeatherInfoCell" customModule="WeatherInformation" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="150" height="146"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="dqg-MH-rJD">
@@ -272,7 +272,7 @@
                             <constraint firstItem="9P1-vJ-GIV" firstAttribute="leading" secondItem="Y9O-eT-FiX" secondAttribute="leading" constant="10" id="oQd-Wj-v92"/>
                             <constraint firstItem="Ftf-j1-awe" firstAttribute="top" secondItem="9P1-vJ-GIV" secondAttribute="top" id="odQ-tM-F27"/>
                             <constraint firstItem="odD-Xf-6vW" firstAttribute="top" secondItem="Y9O-eT-FiX" secondAttribute="top" id="sM4-Bz-zfz"/>
-                            <constraint firstItem="1vv-XH-Xka" firstAttribute="top" secondItem="y7q-oz-b1c" secondAttribute="bottom" constant="60" id="vPh-js-LMe"/>
+                            <constraint firstItem="1vv-XH-Xka" firstAttribute="top" secondItem="y7q-oz-b1c" secondAttribute="bottom" constant="55" id="vPh-js-LMe"/>
                             <constraint firstItem="9P1-vJ-GIV" firstAttribute="trailing" secondItem="y7q-oz-b1c" secondAttribute="trailing" id="wmz-6A-ywg"/>
                             <constraint firstItem="ooM-2k-LGg" firstAttribute="top" secondItem="1vv-XH-Xka" secondAttribute="bottom" constant="2" id="xbG-JK-SSX"/>
                             <constraint firstItem="Y9O-eT-FiX" firstAttribute="bottom" secondItem="odD-Xf-6vW" secondAttribute="bottom" id="xeK-lC-qx3"/>

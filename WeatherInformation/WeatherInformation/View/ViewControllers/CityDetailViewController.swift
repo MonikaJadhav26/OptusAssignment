@@ -11,7 +11,7 @@ import UIKit
 class CityDetailViewController: BaseViewController {
   
   //MARK: - Outlets and Variables
- // @IBOutlet weak var cityDetailTable: UITableView!
+  // @IBOutlet weak var cityDetailTable: UITableView!
   @IBOutlet weak var cityDetailCollectionView: UICollectionView!
   @IBOutlet weak var cityNameLabel: UILabel!
   @IBOutlet weak var cityTempDescriptionLabel: UILabel!
@@ -28,20 +28,20 @@ class CityDetailViewController: BaseViewController {
   var weatherDeatils = [Dictionary<String, String>]()
   var weatherIcons = [Dictionary<String, UIImage>]()
   var isCelciusSelected : Bool?
-
   
+  //MARK: - View Lifecycle Methods
   override func viewDidLoad() {
     super.viewDidLoad()
+    setUpUI()
+    getCityWeatherDetails()
+  }
+  
+  func setUpUI() {
     self.cityDetailCollectionView.register(UINib.init(nibName: Constants.cityDetailWeatherInfoCell, bundle: nil), forCellWithReuseIdentifier: Constants.cityDetailWeatherInfoCell)
     cityDetailCollectionView.isPagingEnabled = true
     setUpLodingView()
-    getCityWeatherDetails()
-    
   }
   
-  @objc override func retryPressed() {
-    getCityWeatherDetails()
-  }
   
   //MARK: - Call to get all data server
   func getCityWeatherDetails() {
@@ -74,7 +74,7 @@ class CityDetailViewController: BaseViewController {
   //MARK: - Method for imageView animation
   func animateWeatherIconImage(cell: UIImageView)  {
     UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 5, options: [], animations: {
-                    cell.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+      cell.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
     }, completion: { finished in
       UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 3, options: .curveEaseInOut,  animations: {
         cell.transform = CGAffineTransform(scaleX: 1, y: 1)
@@ -92,32 +92,29 @@ class CityDetailViewController: BaseViewController {
 
 //MARK: - UICollectionview delegate and datasource methods
 extension CityDetailViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-
-func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-  return weatherDeatils.count
-}
- 
-
-func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.cityDetailWeatherInfoCell, for: indexPath) as! CityDetailWeatherInfoCell
-  for key in weatherDeatils[indexPath.row].keys {
-     cell.weatherKeyLabel.text = key
-     cell.weatherValueLabel.text = weatherDeatils[indexPath.row][key]
-    cell.weatherIconImageView.image = weatherIcons[indexPath.row][key]
+  
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return weatherDeatils.count
   }
-  cell.backgroundContainerView.backgroundColor = cityDetailViewModel.getColourForBackground()
-
-   
+  
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.cityDetailWeatherInfoCell, for: indexPath) as! CityDetailWeatherInfoCell
+    for key in weatherDeatils[indexPath.row].keys {
+      cell.weatherKeyLabel.text = key
+      cell.weatherValueLabel.text = weatherDeatils[indexPath.row][key]
+      cell.weatherIconImageView.image = weatherIcons[indexPath.row][key]
+    }
+    cell.backgroundContainerView.backgroundColor = cityDetailViewModel.getColourForBackground()
     animateWeatherIconImage(cell: cell.weatherIconImageView)
     return cell
-}
-}
-  
-  extension CityDetailViewController: UICollectionViewDelegateFlowLayout {
-      func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-         let width = view.frame.size.width
-         return CGSize(width: width/4, height: 160)
-      }
-    
   }
+}
+
+extension CityDetailViewController: UICollectionViewDelegateFlowLayout {
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    let width = view.frame.size.width
+    return CGSize(width: width/4, height: 160)
+  }
+  
+}
 

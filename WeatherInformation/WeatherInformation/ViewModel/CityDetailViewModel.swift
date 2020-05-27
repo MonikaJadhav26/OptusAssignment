@@ -41,7 +41,7 @@ class CityDetailViewModel : NSObject {
   
   func getCityTemperature(isCelcius : Bool) -> String {
     if isCelcius {
-    return Formatters.Temp.string(from: Float(self.city[0].main?.temp ?? 0.0))
+      return Formatters.Temp.string(from: Float(self.city[0].main?.temp ?? 0.0))
     }
     return Formatters.Temp.faraniteString(from: Float(self.city[0].main?.temp ?? 0.0))
   }
@@ -52,7 +52,7 @@ class CityDetailViewModel : NSObject {
     {
       return Constants.dayBackgraoundImageDetail!
     }
-     return Constants.nightBackgraoundImageDetail!
+    return Constants.nightBackgraoundImageDetail!
   }
   
   func getColourForBackground() -> UIColor {
@@ -60,7 +60,7 @@ class CityDetailViewModel : NSObject {
     {
       return Constants.dayBackgroundColour
     }
-     return Constants.nightBackgroundColour
+    return Constants.nightBackgroundColour
   }
   
   func getWeekday() -> String {
@@ -78,8 +78,7 @@ class CityDetailViewModel : NSObject {
     return minMaxTempString
   }
   
-  
-  
+  //MARK: - Configure array for tableview datasource
   func getAllWeatherDetailsArray() -> [Dictionary<String, String>]  {
     
     var weatherDeatils = [Dictionary<String, String>]()
