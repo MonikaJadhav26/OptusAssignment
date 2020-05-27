@@ -62,7 +62,7 @@ class CityAddViewModel : NSObject {
     
     func storeCityTemperatureInformationInDatabase(result : [CityWether])  {
         for city in result {
-            CoreDataManager.sharedManager.insertCity(name: city.name ?? "", id: city.id ?? 0, temperature: city.main?.temp ?? 0.0 ,currentTime: Formatters.Sunrise.string(from: city.dt ?? 0), timezone: city.timezone ?? 0)
+            CoreDataManager.sharedManager.insertCity(name: city.name ?? "", id: city.id ?? 0, temperature: city.main?.temp ?? 0.0 ,currentTime: city.dt ?? 0, timezone: city.timezone ?? 0)
         }
     }
     

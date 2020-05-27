@@ -18,7 +18,7 @@ class CityDetailTempDegreeCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
         backgroundContainerView.layer.cornerRadius = 5
         backgroundContainerView.layer.shadowColor = UIColor.white.cgColor
         backgroundContainerView.layer.shadowOpacity = 0.1

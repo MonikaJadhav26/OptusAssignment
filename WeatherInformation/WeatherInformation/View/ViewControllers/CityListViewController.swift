@@ -69,7 +69,7 @@ class CityListViewController: BaseViewController {
 
 //MARK: - UITableview delegate and datasource methods
 extension CityListViewController : UITableViewDelegate , UITableViewDataSource {
-   
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cityAddViewModel.getNumberOfTotalCities(section : section)
     }

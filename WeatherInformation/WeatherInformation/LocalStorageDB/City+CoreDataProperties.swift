@@ -20,7 +20,7 @@ extension City {
     @NSManaged public var name: String?
     @NSManaged public var temperature: Double
     @NSManaged public var id: Int64
-    @NSManaged public var currentTime: String
+    @NSManaged public var currentTime: Int64
     @NSManaged public var timeZone: Int64
     
 }

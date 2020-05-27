@@ -63,7 +63,7 @@ class CityDetailViewController: BaseViewController {
     func displayWeatherDetails() {
         cityNameLabel.text = cityDetailViewModel.getCityName()
         cityDayNameLabel.text = cityDetailViewModel.getWeekday()
-        weatherDeatils = cityDetailViewModel.getAllWeatherDetailsArray()
+        weatherDeatils = cityDetailViewModel.getAllWeatherDetailsArray(isCelcius: isCelciusSelected!)
         weatherIcons = cityDetailViewModel.getAllWeatherIconArray()
         backgroundImageView.image = cityDetailViewModel.getImageForBackground()
         self.cityDetailCollectionView.reloadData()

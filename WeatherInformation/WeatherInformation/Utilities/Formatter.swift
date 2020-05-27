@@ -23,67 +23,45 @@ public struct Formatters {
     }()
     
     public struct Sunrise {
-        public static func string(from value: Int) -> String {
+        public static func string(from value: Int , timeZone : Int) -> String {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "hh:mm a"
+            formatter.timeZone = TimeZone(secondsFromGMT : timeZone)!
             let date = Date(timeIntervalSince1970: TimeInterval(value))
-            let localDate = Formatters.sunTime.string(from: date)
+            let localDate = formatter.string(from: date)
             return localDate
         }
     }
     
     // MARK: Weekday
     public struct Weekday {
-        public static func string(from value: Int) -> String {
+        public static func string(from value: Int, timeZone : Int) -> String {
             let date = Date(timeIntervalSince1970: TimeInterval(value))
+            let formatter = DateFormatter()
+            formatter.dateFormat = "eee, hh:mm a"
+            formatter.timeZone = TimeZone(secondsFromGMT : timeZone)!
             let localDate = formatter.string(from: date)
             return localDate
         }
-        
-        public static let formatter: DateFormatter = {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "eee, hh:mm a"
-            formatter.timeZone = timeZone
-            return formatter
-        }()
-    }
-    
-    public struct CurrentTimeForCity {
-        
-        public static func string(from value: String) -> String {
-            let dateStr = value
-            let formatter = DateFormatter()
-            formatter.dateFormat = "hh:mm a"
-            formatter.timeZone = timeZone
-            let date = formatter.date(from: dateStr)
-            let interval = date?.timeIntervalSince1970
-            let currentTime = Formatters.Time.string(from: Int(interval ?? 0.0))
-            return currentTime
-        }
-        
-        
     }
     
     // MARK: Time
     public struct Time {
-        public static func string(from value: Int) -> String {
+        public static func string(from value: Int, timeZone : Int) -> String {
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "HH:mm"
+            formatter.timeZone = TimeZone(secondsFromGMT : timeZone)!
+            
             let date = Date(timeIntervalSince1970: TimeInterval(value))
-            let hour = Calendar.current.component(.hour, from: date)
+            let localDate = formatter.string(from: date)
             
-            switch hour {
-            case 6..<18 : return "TODAY"
-            default: return "TONIGHT"
-            }
-        }
-    }
-    
-    // MARK: CurrentTime
-    public struct CurrentTime {
-        public static func string() -> String {
-            let date = Date()
-            let hour = Calendar.current.component(.hour, from: date)
-            
-            switch hour {
-            case 6..<18 : return "TODAY"
-            default: return "TONIGHT"
+            var hour = [String]()
+            hour = localDate.components(separatedBy: ":")
+            if Int(hour[0])! > 6 && Int(hour[0])! < 18 {
+                return "TODAY"
+            }else {
+                return "TONIGHT"
             }
         }
     }
@@ -158,7 +136,6 @@ public struct Formatters {
                 return "\(value) Km"
             }
         }
-        
     }
     
     // MARK: Rain Volume

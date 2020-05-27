@@ -57,6 +57,8 @@ class CityTemperatureListViewController: BaseViewController {
         self.navigationController?.isNavigationBarHidden = true
         self.cityTemperatureTable.register(UINib.init(nibName: Constants.cityTempCellIdentifier, bundle: nil), forCellReuseIdentifier: Constants.cityTempCellIdentifier)
         self.setUpLodingView()
+        self.cityTemperatureTable.isAccessibilityElement = true
+        self.cityTemperatureTable.accessibilityIdentifier = Constants.temperatureListTableIdentifire
     }
     
     
@@ -81,7 +83,7 @@ class CityTemperatureListViewController: BaseViewController {
 
 //MARK: - UITableview delegate and datasource methods
 extension CityTemperatureListViewController : UITableViewDelegate , UITableViewDataSource {
-   
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cityTempViewModel.getNumberOfTotalCities(section: section)
     }
@@ -141,7 +143,7 @@ extension CityTemperatureListViewController : UITableViewDelegate , UITableViewD
 
 //MARK: - UITableView Footer delegate methods
 extension CityTemperatureListViewController : CityTempFooterViewDelegate {
-   
+    
     func degreeCelciusButtonTapped(sender: UIButton) {
         isCelciusSelected = true
         cityTemperatureTable.reloadData()

@@ -43,7 +43,7 @@ class CoreDataManager {
     var cityList = Array<City>()
     
     //MARK: - Methods for performing operations on database
-    func insertCity(name: String, id : Int , temperature : Double , currentTime : String , timezone : Int)  {
+    func insertCity(name: String, id : Int , temperature : Double , currentTime : Int , timezone : Int)  {
         
         if !checkRecordForSelectedIdIsExists(id: id)  {
             

@@ -24,7 +24,7 @@ struct Constants {
     static let cityDetailTempDegreeCell = "CityDetailTempDegreeCell"
     static let loadingView = "LoadingView"
     static let storyboard = "Main"
-    static let appDelegate = UIApplication.shared.delegate as? AppDelegate
+    static let temperatureListTableIdentifire = "cityTemperatureTableView"
     static let ok = "OK"
     static let errorTitle = "Error"
     static let success = "success"

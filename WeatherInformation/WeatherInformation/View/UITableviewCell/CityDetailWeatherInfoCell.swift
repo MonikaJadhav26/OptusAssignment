@@ -18,7 +18,7 @@ class CityDetailWeatherInfoCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-
+        
         backgroundContainerView.layer.cornerRadius = 5
         backgroundContainerView.layer.shadowColor = UIColor.white.cgColor
         backgroundContainerView.layer.shadowOpacity = 1

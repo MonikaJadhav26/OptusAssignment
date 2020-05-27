@@ -47,7 +47,7 @@ class CityDetailViewModel : NSObject {
     }
     
     func getImageForBackground() -> UIImage {
-        if Formatters.Time.string(from: Int(self.city[0].dt ?? 0)) == Constants.CurrentTime.day.rawValue
+        if Formatters.Time.string(from: Int(self.city[0].dt ?? 0), timeZone: Int(self.city[0].timezone ?? 0)) == Constants.CurrentTime.day.rawValue
         {
             return Constants.dayBackgraoundImageDetail!
         }
@@ -55,7 +55,7 @@ class CityDetailViewModel : NSObject {
     }
     
     func getColourForBackground() -> UIColor {
-        if Formatters.Time.string(from: Int(self.city[0].dt ?? 0)) == Constants.CurrentTime.day.rawValue
+        if Formatters.Time.string(from: Int(self.city[0].dt ?? 0), timeZone: Int(self.city[0].timezone ?? 0)) == Constants.CurrentTime.day.rawValue
         {
             return Constants.dayBackgroundColour
         }
@@ -63,7 +63,7 @@ class CityDetailViewModel : NSObject {
     }
     
     func getWeekday() -> String {
-        return "\(Formatters.Weekday.string(from: Int(self.city[0].dt ?? 0)))"
+        return "\(Formatters.Weekday.string(from: Int(self.city[0].dt ?? 0), timeZone: Int(self.city[0].timezone ?? 0)))"
     }
     
     func getCityIcon() -> String {
@@ -78,16 +78,23 @@ class CityDetailViewModel : NSObject {
     }
     
     //MARK: - Configure array for tableview datasource
-    func getAllWeatherDetailsArray() -> [Dictionary<String, String>]  {
+    func getAllWeatherDetailsArray(isCelcius : Bool) -> [Dictionary<String, String>]  {
         
         var weatherDeatils = [Dictionary<String, String>]()
         let windString = "\(String(describing: city[0].wind!.speed)) km/h"
+        var degreeTempStr = String()
         
-        weatherDeatils.append(["DEGREETEMP": (Formatters.Temp.string(from: Float(self.city[0].main?.temp ?? 0.0)))])
+        if isCelcius {
+            degreeTempStr =    Formatters.Temp.string(from: Float(self.city[0].main?.temp ?? 0.0))
+        }else {
+            degreeTempStr = Formatters.Temp.faraniteString(from: Float(self.city[0].main?.temp ?? 0.0))
+        }
+        
+        weatherDeatils.append(["DEGREETEMP": degreeTempStr])
         weatherDeatils.append(["MAX": (Formatters.Temp.string(from: Float(self.city[0].main?.tempMax ?? 0.0)))])
         weatherDeatils.append(["MIN": (Formatters.Temp.string(from: Float(self.city[0].main?.tempMin ?? 0.0)))])
-        weatherDeatils.append(["SUNRIZE": Formatters.Sunrise.string(from: city[0].sys!.sunrise)])
-        weatherDeatils.append(["SUNSET": Formatters.Sunrise.string(from: city[0].sys!.sunset)])
+        weatherDeatils.append(["SUNRIZE": Formatters.Sunrise.string(from: city[0].sys!.sunrise, timeZone: city[0].timezone!)])
+        weatherDeatils.append(["SUNSET": Formatters.Sunrise.string(from: city[0].sys!.sunset, timeZone: city[0].timezone!)])
         weatherDeatils.append(["HUMIDITY": Formatters.Humidity.string(from: Int(self.city[0].main?.humidity ?? 0))])
         weatherDeatils.append(["PRESSURE": Formatters.Pressure.string(from: Float(self.city[0].main?.pressure ?? Int(0.0)))])
         weatherDeatils.append(["WIND": windString])

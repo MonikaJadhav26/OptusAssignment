@@ -18,13 +18,11 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addTapGesture()
-        // Do any additional setup after loading the view.
     }
     
     func setUpLodingView() {
         let aux = attachAuxilliaryViews()
         loadingView = aux.self
-        
     }
     
     //MARK: - Add tap Gesture to View
@@ -82,7 +80,6 @@ extension UIViewController {
             fatalError("UIViewController must belong to a UINavigationController")
         }
         let margins = nc.view.layoutMarginsGuide
-        // Loading View
         let lv = LoadingView.create()
         nc.view.addSubview(lv)
         nc.view.bringSubviewToFront(lv)

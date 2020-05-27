@@ -1,26 +1,25 @@
 //
-//  CityTemperatureListViewModelTests.swift
+//  CityDetailViewControllerTests.swift
 //  WeatherInformationTests
 //
-//  Created by Monika Jadhav on 25/05/20.
+//  Created by Monika Jadhav on 27/05/20.
 //  Copyright © 2020 Monika Jadhav. All rights reserved.
 //
 
 import XCTest
 @testable import WeatherInformation
 
-
-class CityTemperatureListViewModelTests: XCTestCase {
+class CityDetailViewControllerTests: XCTestCase {
     
-    let cityTempViewModel = CityTemperatureListViewModel()
+    let cityDetailViewModel = CityDetailViewModel()
     
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        
     }
     
     func testFetchCityTemperatureDataIsSuccess() {
         let expectation = self.expectation(description: "success")
-        cityTempViewModel.fetchCityTemperatureData { (result) in
+        cityDetailViewModel.fetchCityDetailWeatherInformation(cityId: 2147714) { (result) in
             switch(result) {
             case .success(let result):
                 XCTAssertNotNil(result)
@@ -31,4 +30,5 @@ class CityTemperatureListViewModelTests: XCTestCase {
         }
         self.waitForExpectations(timeout: 5, handler: nil)
     }
+    
 }
