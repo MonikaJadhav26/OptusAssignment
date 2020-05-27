@@ -77,7 +77,7 @@ extension CityListViewController : UITableViewDelegate , UITableViewDataSource {
     
     let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cityListCellIdentifier)
     cell?.accessibilityIdentifier = "cityCell_\(indexPath.row)"
-    cell?.textLabel?.text = cityAddViewModel.getCityName(indexPath : indexPath)
+    (cell?.contentView.viewWithTag(1) as! UILabel).text = cityAddViewModel.getCityName(indexPath : indexPath)
     return cell!
   }
   

@@ -31,5 +31,4 @@ class CityTemperatureListViewModelTests: XCTestCase {
       }
       self.waitForExpectations(timeout: 5, handler: nil)
     }
-
 }
