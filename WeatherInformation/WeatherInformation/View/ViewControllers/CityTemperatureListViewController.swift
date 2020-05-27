@@ -111,9 +111,18 @@ extension CityTemperatureListViewController : UITableViewDelegate , UITableViewD
         cityDetailViewController?.isCelciusSelected = self.isCelciusSelected
         self.navigationController?.pushViewController(cityDetailViewController!, animated: true)
     }
-    
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            cityTempViewModel.deletePerticularCityRecordFromDatabase(cityID: cityTempViewModel.getCityId(indexPath : indexPath))
+        }
+        if self.cityTempViewModel.fetchAllCityTemperatureRecordsFromDB() {
+        }
+        self.cityTemperatureTable.reloadData()
+        
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

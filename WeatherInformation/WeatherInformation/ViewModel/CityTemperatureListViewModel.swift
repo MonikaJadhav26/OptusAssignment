@@ -48,6 +48,10 @@ class CityTemperatureListViewModel : NSObject {
         return false
     }
     
+    func deletePerticularCityRecordFromDatabase(cityID : Int) {
+        CoreDataManager.sharedManager.deleteCity(cityId : cityID)
+    }
+    
     func getNumberOfTotalCities(section: Int) -> Int {
         return self.cityTempList.count
     }

@@ -115,7 +115,11 @@ class CoreDataManager {
                     cityList.append(city as! City)
                 }
             }
-            
+            do {
+                try managedContext.save()
+            }catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
         } catch {
             let fetchError = error as NSError
             print(fetchError)
@@ -123,4 +127,25 @@ class CoreDataManager {
         return cityList
     }
     
+    func deleteCity(cityId : Int) {
+        let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
+        
+        let entity = NSEntityDescription.entity(forEntityName: "City",
+                                                in: managedContext)!
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
+        let predicate = NSPredicate(format: "(id = %d)", cityId)
+        fetchRequest.entity = entity
+        fetchRequest.predicate = predicate
+        do {
+            let result = try managedContext.fetch(fetchRequest)
+            if (result.count > 0) {
+                let city = (result[0] as! NSManagedObject) as! City
+                managedContext.delete(city)
+            }
+        } catch {
+            let fetchError = error as NSError
+            print(fetchError)
+        }
+    }
 }
