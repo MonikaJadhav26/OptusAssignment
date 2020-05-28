@@ -139,7 +139,6 @@ extension CityTemperatureListViewController : UITableViewDelegate , UITableViewD
         }else {
             footerView.celciusButton.setTitleColor(.lightGray, for: .normal)
             footerView.faraniteButton.setTitleColor(.white, for: .normal)
-            
         }
         return footerView
     }
