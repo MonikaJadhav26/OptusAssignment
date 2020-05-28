@@ -112,6 +112,9 @@ extension CityTemperatureListViewController : UITableViewDelegate , UITableViewD
         self.navigationController?.pushViewController(cityDetailViewController!, animated: true)
     }
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if cityTempViewModel.cityTempList.count == 1 {
+            return false
+        }
         return true
     }
     
